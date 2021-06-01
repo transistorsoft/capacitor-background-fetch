@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">BGFetch Demo</string>
+    <string name="title_activity_main">BGFetch Demo</string>
+    <string name="package_name">com.transistorsoft.backgroundfetch.capacitor.demo</string>
+    <string name="custom_url_scheme">com.transistorsoft.backgroundfetch.capacitor.demo</string>
+</resources>

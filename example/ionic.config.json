@@ -1,0 +1,7 @@
+{
+  "name": "BGFetch Demo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

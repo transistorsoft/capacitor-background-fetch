@@ -45,13 +45,16 @@ repositories {
     google()
     jcenter()
     mavenCentral()
+    maven {
+        url './libs'
+    }
 }
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation(group: 'com.transistorsoft', name:'tsbackgroundfetch', version: '+')
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
