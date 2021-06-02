@@ -31,6 +31,7 @@ There is **no way** to increase the rate which a fetch-event occurs and this plu
   - [iOS Setup](help/INSTALL-IOS.md)
   - [Android Setup](help/INSTALL-ANDROID.md)
 - ### [Example](#example)
+- ### [Receiving events after app termination](#receiving-events-after-app-termination)
 - ### [Debugging](#debugging)
 
 -------------------------------------------------------------
@@ -126,7 +127,12 @@ export class HomePage {
 }
 ```
 
-### Executing Custom Tasks
+## Receiving Events After App Termination
+
+- Only Android is able to continue receiving events after app termination.  See API Docs [__`enableHeadless`__](https://transistorsoft.github.io/capacitor-background-fetch/interfaces/backgroundfetchconfig.html#enableheadless).
+- For iOS, there is __NO SUCH THING__ as __`stopOnTerminate: false`__.  When an iOS app is terminated, the OS will **no longer fire events**.
+
+## Executing Custom Tasks
 
 In addition to the default background-fetch task defined by `BackgroundFetch.configure`, you may also execute your own arbitrary "oneshot" or periodic tasks (iOS requires additional [Setup Instructions](#iOS-Setup)).  See API Docs [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask).  However, all events will be fired into the Callback provided to **`BackgroundFetch#configure`**.
 
