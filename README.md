@@ -87,9 +87,7 @@ export class HomePage {
 
   async initBackgroundFetch() {
     const status = await BackgroundFetch.configure({
-      minimumFetchInterval: 15,
-      stopOnTerminate: false,
-      enableHeadless: true
+      minimumFetchInterval: 15
     }, async (taskId) => {
       console.log('[BackgroundFetch] EVENT:', taskId);
       // Perform your work in an awaited Promise
