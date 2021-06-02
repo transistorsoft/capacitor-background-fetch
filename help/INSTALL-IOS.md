@@ -59,7 +59,7 @@ BackgroundFetch.scheduleTask({
 ```diff
 import UIKit
 import Capacitor
-import TSBackgroundFetch
++import TSBackgroundFetch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
