@@ -25,7 +25,7 @@ There is **no way** to increase the rate which a fetch-event occurs and this plu
 -------------------------------------------------------------
 
 # Contents
-- ### :books: [API Documentation](https://transistorsoft.github.io/capacitor-background-fetch)
+- ### :books: [API Documentation](https://transistorsoft.github.io/capacitor-background-fetch/)
 - ### [Installing the Plugin](#installing-the-plugin)
 - ### [Setup Guides](#setup-guides)
   - [iOS Setup](help/INSTALL-IOS.md)
