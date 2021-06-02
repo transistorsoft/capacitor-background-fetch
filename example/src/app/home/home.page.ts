@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService, Message } from '../services/data.service';
 
 import {BackgroundFetch} from '@transistorsoft/capacitor-background-fetch';
 
@@ -8,7 +9,7 @@ import {BackgroundFetch} from '@transistorsoft/capacitor-background-fetch';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor() {}
+  constructor(private data: DataService) {}
 
   ionViewWillEnter() {
     this.initBackgroundFetch();
@@ -52,4 +53,15 @@ export class HomePage {
       }, 5000);
     });
   }
+
+  refresh(ev) {
+    setTimeout(() => {
+      ev.detail.complete();
+    }, 3000);
+  }
+
+  getMessages(): Message[] {
+    return this.data.getMessages();
+  }
+
 }

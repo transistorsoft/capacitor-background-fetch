@@ -26,7 +26,7 @@
     "@capacitor/ios": "3.0.0",
     "@capacitor/keyboard": "1.0.0",
     "@ionic/angular": "^5.5.2",
-    "@transistorsoft/capacitor-background-fetch": "file:..",
+    "@transistorsoft/capacitor-background-fetch": "^0.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
