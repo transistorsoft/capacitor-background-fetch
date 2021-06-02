@@ -54,7 +54,7 @@ BackgroundFetch.scheduleTask({
 
 ## `AppDelegate.swift` (:new: __iOS 13+__)
 
-- Edit your __`AppDelegate.swift` and add the following code:
+- Edit your __`AppDelegate.swift`__ and add the following code:
 
 ```diff
 import UIKit
