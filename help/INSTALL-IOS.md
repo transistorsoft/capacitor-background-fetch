@@ -76,10 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-+     // [capacitor-background-fetch]
-+     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-+         print("BackgroundFetchPlugin AppDelegate received fetch event");
-+         let fetchManager = TSBackgroundFetch.sharedInstance();
-+         fetchManager?.perform(completionHandler: completionHandler, applicationState: application.applicationState);
-+     }
++    // [capacitor-background-fetch]
++    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
++        print("BackgroundFetchPlugin AppDelegate received fetch event");
++        let fetchManager = TSBackgroundFetch.sharedInstance();
++        fetchManager?.perform(completionHandler: completionHandler, applicationState: application.applicationState);
++    }
 ```
