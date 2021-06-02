@@ -31,7 +31,7 @@ There is **no way** to increase the rate which a fetch-event occurs and this plu
   - [iOS Setup](help/INSTALL-IOS.md)
   - [Android Setup](help/INSTALL-ANDROID.md)
 - ### [Example](#example)
-- ### [Receiving events after app termination](#receiving-events-after-app-termination)
+- ### [Receiving events after app termination](#receiving-events-after-app-termination-1)
 - ### [Debugging](#debugging)
 
 -------------------------------------------------------------
