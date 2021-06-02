@@ -134,7 +134,7 @@ export class HomePage {
 
 ## Executing Custom Tasks
 
-In addition to the default background-fetch task defined by [__`BackgroundFetch.configure`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#configure), you may also execute your own arbitrary "oneshot" or periodic tasks (iOS requires additional [Setup Instructions](#iOS-Setup)).  See API Docs [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask).  However, all events will be fired into the Callback provided to [__`BackgroundFetch.configure`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#configure).
+In addition to the default background-fetch task defined by [__`BackgroundFetch.configure`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#configure), you may also execute your own arbitrary "oneshot" or periodic tasks (iOS requires additional [Setup Instructions](help/INSTALL-IOS.md#configure-infoplist-new-ios-13)).  See API Docs [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask).  However, all events will be fired into the Callback provided to [__`BackgroundFetch.configure`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#configure).
 
 ### ⚠️ iOS:
 - [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask) on *iOS* seems only to run when the device is plugged into power.
