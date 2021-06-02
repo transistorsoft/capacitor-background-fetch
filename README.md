@@ -68,6 +68,8 @@ $ npx cap sync
 
 #### Angular Example:
 
+- See API Docs [__`BackgroundFetch.configure`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#configure)
+
 ```javascript
 import { Component } from '@angular/core';
 
@@ -126,13 +128,13 @@ export class HomePage {
 
 ### Executing Custom Tasks
 
-In addition to the default background-fetch task defined by `BackgroundFetch.configure`, you may also execute your own arbitrary "oneshot" or periodic tasks (iOS requires additional [Setup Instructions](#iOS-Setup)).  However, all events will be fired into the Callback provided to **`BackgroundFetch#configure`**:
+In addition to the default background-fetch task defined by `BackgroundFetch.configure`, you may also execute your own arbitrary "oneshot" or periodic tasks (iOS requires additional [Setup Instructions](#iOS-Setup)).  See API Docs [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask).  However, all events will be fired into the Callback provided to **`BackgroundFetch#configure`**.
 
 ### ⚠️ iOS:
 - `scheduleTask` on *iOS* seems only to run when the device is plugged into power.
-- `scheduleTask` on *iOS* are designed for *low-priority* tasks, such as purging cache files &mdash; they tend to be **unreliable for mission-critical tasks**.  `scheduleTask` will *never* run as frequently as you want.
+- `scheduleTask` on *iOS* are designed for *low-priority* tasks, such as purging cache files &mdash; they tend to be **unreliable for mission-critical tasks**.  [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask) will *never* run as frequently as you want.
 - The default `fetch` event is much more reliable and fires far more often.
-- `scheduleTask` on *iOS* stop when the *user* terminates the app.  There is no such thing as `stopOnTerminate: false` for *iOS*.
+- [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask) on *iOS* stop when the *user* terminates the app.  There is no such thing as `stopOnTerminate: false` for *iOS*.
 
 ```javascript
 // Step 1:  Configure BackgroundFetch as usual.
