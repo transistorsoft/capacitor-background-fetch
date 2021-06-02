@@ -130,17 +130,17 @@ export class HomePage {
 ## Receiving Events After App Termination
 
 - Only Android is able to continue receiving events after app termination.  See API Docs [__`enableHeadless`__](https://transistorsoft.github.io/capacitor-background-fetch/interfaces/backgroundfetchconfig.html#enableheadless).
-- For iOS, there is __NO SUCH THING__ as __`stopOnTerminate: false`__.  When an iOS app is terminated, the OS will **no longer fire events**.
+- For iOS, there is __NO SUCH THING__ as [__`stopOnTerminate: false`__](https://transistorsoft.github.io/capacitor-background-fetch/interfaces/backgroundfetchconfig.html#stoponterminate).  When an iOS app is terminated, the OS will **no longer fire events**.
 
 ## Executing Custom Tasks
 
-In addition to the default background-fetch task defined by `BackgroundFetch.configure`, you may also execute your own arbitrary "oneshot" or periodic tasks (iOS requires additional [Setup Instructions](#iOS-Setup)).  See API Docs [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask).  However, all events will be fired into the Callback provided to **`BackgroundFetch#configure`**.
+In addition to the default background-fetch task defined by [__`BackgroundFetch.configure`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#configure), you may also execute your own arbitrary "oneshot" or periodic tasks (iOS requires additional [Setup Instructions](#iOS-Setup)).  See API Docs [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask).  However, all events will be fired into the Callback provided to **`BackgroundFetch#configure`**.
 
 ### ⚠️ iOS:
-- `scheduleTask` on *iOS* seems only to run when the device is plugged into power.
-- `scheduleTask` on *iOS* are designed for *low-priority* tasks, such as purging cache files &mdash; they tend to be **unreliable for mission-critical tasks**.  [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask) will *never* run as frequently as you want.
+- [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask) on *iOS* seems only to run when the device is plugged into power.
+- [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask) on *iOS* are designed for *low-priority* tasks, such as purging cache files &mdash; they tend to be **unreliable for mission-critical tasks**.  [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask) will *never* run as frequently as you want.
 - The default `fetch` event is much more reliable and fires far more often.
-- [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask) on *iOS* stop when the *user* terminates the app.  There is no such thing as `stopOnTerminate: false` for *iOS*.
+- [__`BackgroundFetch.scheduleTask`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#scheduletask) on *iOS* stop when the *user* terminates the app.  There is no such thing as [__`stopOnTerminate: false`__](https://transistorsoft.github.io/capacitor-background-fetch/interfaces/backgroundfetchconfig.html#stoponterminate) for *iOS*.
 
 ```javascript
 // Step 1:  Configure BackgroundFetch as usual.
@@ -188,7 +188,7 @@ BackgroundFetch.scheduleTask({
 ```obj-c
 e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.transistorsoft.fetch"]
 ```
-- Click the `[ > ]` button to continue.  The task will execute and the Callback function provided to **`BackgroundFetch.configure`** will receive the event.
+- Click the `[ > ]` button to continue.  The task will execute and the Callback function provided to [__`BackgroundFetch.configure`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#configure) will receive the event.
 
 
 ![](https://dl.dropboxusercontent.com/s/zr7w3g8ivf71u32/ios-simulate-bgtask-pause.png?dl=1)
@@ -199,7 +199,7 @@ e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWith
 
 #### Simulating task-timeout events
 
-- Only the new `BGTaskScheduler` api supports *simulated* task-timeout events.  To simulate a task-timeout, your `fetchCallback` must not call `BackgroundFetch.finish(taskId)`:
+- Only the new `BGTaskScheduler` api supports *simulated* task-timeout events.  To simulate a task-timeout, your `fetchCallback` must not call [__`BackgroundFetch.finish(taskId)`__](https://transistorsoft.github.io/capacitor-background-fetch/classes/backgroundfetch.html#finish):
 
 ```javascript
 const status = await BackgroundFetch.configure({
