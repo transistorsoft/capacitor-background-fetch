@@ -28,8 +28,8 @@ There is **no way** to increase the rate which a fetch-event occurs and this plu
 - ### :books: [API Documentation](https://transistorsoft.github.io/capacitor-background-fetch)
 - ### [Installing the Plugin](#installing-the-plugin)
 - ### [Setup Guides](#setup-guides)
-  - [iOS Setup](#ios-setup)
-  - [Android Setup](#android-setup)
+  - [iOS Setup](help/INSTALL-IOS.md)
+  - [Android Setup](help/INSTALL-ANDROID.md)
 - ### [Example](#example)
 - ### [Debugging](#debugging)
 
@@ -41,12 +41,16 @@ There is **no way** to increase the rate which a fetch-event occurs and this plu
 
 ```bash
 $ yarn add @transistorsoft/capacitor-background-fetch
+$ npx cap sync
 ```
 
 ### With `npm`
 ```bash
 $ npm install --save @transistorsoft/capacitor-background-fetch
+$ npx cap sync
 ```
+
+- Proceed to [Required Setup Guides](#setup-guides)
 
 ## Setup Guides
 
