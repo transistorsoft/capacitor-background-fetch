@@ -20,7 +20,7 @@ There is **no way** to increase the rate which a fetch-event occurs and this plu
 - If the user doesn't open your *iOS* app for long periods of time, *iOS* will **stop firing events**.
 
 ### Android
-- The Android plugin provides a [HeadlessJS](https://facebook.github.io/react-native/docs/headless-js-android.html) implementation allowing you to continue handling events even after app-termination (see **[`@config enableHeadless`](#config-boolean-enableheadless-false)**)
+- The Android plugin provides a __*Headless*__ mechanism allowing you to continue handling events even after app-termination (see [Receiving Events After App Termination](#receiving-events-after-app-termination-1))
 
 -------------------------------------------------------------
 
