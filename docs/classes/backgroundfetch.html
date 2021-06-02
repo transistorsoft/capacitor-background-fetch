@@ -1,0 +1,874 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>BackgroundFetch | capacitor-background-fetch</title>
+	<meta name="description" content="Documentation for capacitor-background-fetch">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="shortcut icon" class="favicon" href="../assets/images/favicon.ico">
+	<script src="../assets/js/search.js"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell left">
+					<div class="brand">
+						<a class="logo" href="https://www.transistorsoft.com"><img src="../assets/images/transistor-logo-bw.svg" /></a>
+						<span class="title">
+							<a href="/@transistorsoft/capacitor-background-fetch">[API Docs] capacitor-background-fetch</a>&nbsp;<span class="tsd-flag ts-flagOptional ts-flagVersion">v 0.0.1</span>
+						</span>
+					</div>
+				</div>
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading"></li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../index.html">capacitor-background-fetch</a>
+				</li>
+				<li>
+					<a href="backgroundfetch.html">BackgroundFetch</a>
+				</li>
+			</ul>
+			<h1>Class BackgroundFetch</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-9 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>BackgroundFetch is a module to receive periodic callbacks (min every 15 min) while your app is running in the background or terminated.</p>
+					</div>
+					<pre><code class="language-javascript"><span style="color: #F92672">import</span><span style="color: #F8F8F2"> {BackgroundFetch} </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#039;@transistorsoft/capacitor-background-fetch&#039;</span><span style="color: #F8F8F2">;</span>
+
+<span style="color: #66D9EF">class</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">HomePage</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">  </span><span style="color: #A6E22E">ionViewWillEnter</span><span style="color: #F8F8F2">() {</span>
+<span style="color: #F8F8F2">    </span><span style="color: #FD971F">this</span><span style="color: #F8F8F2">.</span><span style="color: #A6E22E">initBackgroundFetch</span><span style="color: #F8F8F2">();</span>
+<span style="color: #F8F8F2">  }</span>
+
+<span style="color: #F8F8F2">  </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">initBackgroundFetch</span><span style="color: #F8F8F2">() {</span>
+<span style="color: #F8F8F2">    </span><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> status </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">await</span><span style="color: #F8F8F2"> BackgroundFetch.</span><span style="color: #A6E22E">configure</span><span style="color: #F8F8F2">({</span>
+<span style="color: #F8F8F2">      minimumFetchInterval: </span><span style="color: #AE81FF">15</span>
+<span style="color: #F8F8F2">    }, </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F">taskId</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {  </span><span style="color: #88846F">// &lt;---------------- Event handler.</span>
+<span style="color: #F8F8F2">      console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] EVENT:&#039;</span><span style="color: #F8F8F2">, taskId);</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// Perform your work in an awaited Promise</span>
+<span style="color: #F8F8F2">      </span><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> result </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">await</span><span style="color: #F8F8F2"> </span><span style="color: #FD971F">this</span><span style="color: #F8F8F2">.</span><span style="color: #A6E22E">performYourWorkHere</span><span style="color: #F8F8F2">();</span>
+<span style="color: #F8F8F2">      console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] work complete:&#039;</span><span style="color: #F8F8F2">, result);</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// [REQUIRED] Signal to the OS that your work is complete.</span>
+<span style="color: #F8F8F2">      BackgroundFetch.</span><span style="color: #A6E22E">finish</span><span style="color: #F8F8F2">(taskId);</span>
+<span style="color: #F8F8F2">    }, </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F">taskId</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {  </span><span style="color: #88846F">// &lt;---------------- Event timeout handler</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// The OS has signalled that your remaining background-time has expired.</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// You must immediately complete your work and signal #finish.</span>
+<span style="color: #F8F8F2">      console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] TIMEOUT:&#039;</span><span style="color: #F8F8F2">, taskId);</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// [REQUIRED] Signal to the OS that your work is complete.</span>
+<span style="color: #F8F8F2">      BackgroundFetch.</span><span style="color: #A6E22E">finish</span><span style="color: #F8F8F2">(taskId);</span>
+<span style="color: #F8F8F2">    });</span>
+
+<span style="color: #F8F8F2">    </span><span style="color: #88846F">// Checking BackgroundFetch status:</span>
+<span style="color: #F8F8F2">    </span><span style="color: #F92672">if</span><span style="color: #F8F8F2"> (status </span><span style="color: #F92672">!==</span><span style="color: #F8F8F2"> BackgroundFetch.STATUS_AVAILABLE) {</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// Uh-oh:  we have a problem:</span>
+<span style="color: #F8F8F2">      </span><span style="color: #F92672">if</span><span style="color: #F8F8F2"> (status </span><span style="color: #F92672">===</span><span style="color: #F8F8F2"> BackgroundFetch.STATUS_DENIED) {</span>
+<span style="color: #F8F8F2">        </span><span style="color: #A6E22E">alert</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;The user explicitly disabled background behavior for this app or for the whole system.&#039;</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">      } </span><span style="color: #F92672">else</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">if</span><span style="color: #F8F8F2"> (status </span><span style="color: #F92672">===</span><span style="color: #F8F8F2"> BackgroundFetch.STATUS_RESTRICTED) {</span>
+<span style="color: #F8F8F2">        </span><span style="color: #A6E22E">alert</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;Background updates are unavailable and the user cannot enable them again.&#039;</span><span style="color: #F8F8F2">)</span>
+<span style="color: #F8F8F2">      }</span>
+<span style="color: #F8F8F2">    }</span>
+<span style="color: #F8F8F2">  }</span>
+
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Simulate a long-running task (eg:  an HTTP request)</span>
+<span style="color: #F8F8F2">  </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">performYourWorkHere</span><span style="color: #F8F8F2">() {</span>
+<span style="color: #F8F8F2">    </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">Promise</span><span style="color: #F8F8F2">((</span><span style="color: #FD971F">resolve</span><span style="color: #F8F8F2">, </span><span style="color: #FD971F">reject</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">      </span><span style="color: #66D9EF">setTimeout</span><span style="color: #F8F8F2">(() </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">        </span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(</span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">      }, </span><span style="color: #AE81FF">5000</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">    });</span>
+<span style="color: #F8F8F2">  }</span>
+<span style="color: #F8F8F2">}</span>
+</code></pre>
+					<a href="#ios" id="ios" style="color: inherit; text-decoration: none;">
+						<h2>iOS</h2>
+					</a>
+					<ul>
+						<li>There is <strong>no way</strong> to increase the rate which a fetch-event occurs and this plugin sets the rate to the most frequent possible &mdash; you will <strong>never</strong> receive an event faster than <strong>15 minutes</strong>.  The operating-system will automatically throttle the rate the background-fetch events occur based upon usage patterns.  Eg: if user hasn&#39;t turned on their phone for a long period of time, fetch events will occur less frequently.</li>
+						<li><a href="#executing-custom-tasks"><strong><code>scheduleTask</code></strong></a> seems only to fire when the device is plugged into power.</li>
+						<li>⚠️ When your app is <strong>terminated</strong>, iOS <em>no longer fires events</em> &mdash; There is <em>no such thing</em> as <strong><code>stopOnTerminate: false</code></strong> for iOS.</li>
+						<li>iOS can take <em>days</em> before Apple&#39;s machine-learning algorithm settles in and begins regularly firing events.  Do not sit staring at your logs waiting for an event to fire.  If your <a href="#debugging"><em>simulated events</em></a> work, that&#39;s all you need to know that everything is correctly configured.</li>
+						<li>If the user doesn&#39;t open your <em>iOS</em> app for long periods of time, <em>iOS</em> will <strong>stop firing events</strong>.</li>
+					</ul>
+					<a href="#android" id="android" style="color: inherit; text-decoration: none;">
+						<h2>Android</h2>
+					</a>
+					<ul>
+						<li>The Android plugin is capable of operating after app terminate (see API docs <a href="../interfaces/backgroundfetchconfig.html#stoponterminate">BackgroundFetchConfig.stopOnTerminate</a>, <a href="../interfaces/backgroundfetchconfig.html#enableheadless">BackgroundFetchConfig.enableHeadless</a>) but only by implementing your work with Java code.</li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">BackgroundFetch</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="backgroundfetch.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#network_type_any" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>ANY</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#network_type_cellular" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>CELLULAR</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#network_type_none" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>NONE</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#network_type_not_roaming" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>NOT_<wbr>ROAMING</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#network_type_unmetered" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>UNMETERED</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#status_available" class="tsd-kind-icon">STATUS_<wbr>AVAILABLE</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#status_denied" class="tsd-kind-icon">STATUS_<wbr>DENIED</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#status_restricted" class="tsd-kind-icon">STATUS_<wbr>RESTRICTED</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#configure" class="tsd-kind-icon">configure</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#finish" class="tsd-kind-icon">finish</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#scheduletask" class="tsd-kind-icon">schedule<wbr>Task</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="backgroundfetch.html#stop" class="tsd-kind-icon">stop</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Background<wbr>Fetch<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="backgroundfetch.html" class="tsd-signature-type" data-tsd-kind="Class">BackgroundFetch</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="backgroundfetch.html" class="tsd-signature-type" data-tsd-kind="Class">BackgroundFetch</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="network_type_any" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> NETWORK_<wbr>TYPE_<wbr>ANY</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> NETWORK_TYPE_ANY<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../index.html#networktype" class="tsd-signature-type" data-tsd-kind="Type alias">NetworkType</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This job requires network connectivity.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../index.html#networktype" class="tsd-signature-type" data-tsd-kind="Type alias">NetworkType</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="network_type_cellular" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> NETWORK_<wbr>TYPE_<wbr>CELLULAR</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> NETWORK_TYPE_CELLULAR<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../index.html#networktype" class="tsd-signature-type" data-tsd-kind="Type alias">NetworkType</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This job requires network connectivity that is a cellular network.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../index.html#networktype" class="tsd-signature-type" data-tsd-kind="Type alias">NetworkType</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="network_type_none" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> NETWORK_<wbr>TYPE_<wbr>NONE</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> NETWORK_TYPE_NONE<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../index.html#networktype" class="tsd-signature-type" data-tsd-kind="Type alias">NetworkType</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This job doesn&#39;t care about network constraints, either any or none.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../index.html#networktype" class="tsd-signature-type" data-tsd-kind="Type alias">NetworkType</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="network_type_not_roaming" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> NETWORK_<wbr>TYPE_<wbr>NOT_<wbr>ROAMING</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> NETWORK_TYPE_NOT_ROAMING<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../index.html#networktype" class="tsd-signature-type" data-tsd-kind="Type alias">NetworkType</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This job requires network connectivity that is not roaming.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../index.html#networktype" class="tsd-signature-type" data-tsd-kind="Type alias">NetworkType</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="network_type_unmetered" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> NETWORK_<wbr>TYPE_<wbr>UNMETERED</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> NETWORK_TYPE_UNMETERED<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../index.html#networktype" class="tsd-signature-type" data-tsd-kind="Type alias">NetworkType</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This job requires network connectivity that is unmetered.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../index.html#networktype" class="tsd-signature-type" data-tsd-kind="Type alias">NetworkType</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="status_available" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> STATUS_<wbr>AVAILABLE</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> STATUS_AVAILABLE<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Background fetch is available and enabled.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="status_denied" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> STATUS_<wbr>DENIED</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> STATUS_DENIED<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The user explicitly disabled background behavior for this app or for the whole system.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="status_restricted" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> STATUS_<wbr>RESTRICTED</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> STATUS_RESTRICTED<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Background fetch updates are unavailable and the user cannot enable them again. For example, this status can occur when parental controls are in effect for the current user.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="configure" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> configure</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">configure<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../interfaces/backgroundfetchconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">BackgroundFetchConfig</a>, onEvent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>taskId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, onTimeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>taskId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Initial configuration of BackgroundFetch, including config-options and Fetch-callback.  The <a href="backgroundfetch.html#start">start</a> method will automatically be executed.</p>
+								</div>
+								<pre><code class="language-javascript"><span style="color: #F8F8F2">  async </span><span style="color: #A6E22E">initBackgroundFetch</span><span style="color: #F8F8F2">() {</span>
+<span style="color: #F8F8F2">    </span><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> status </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">await</span><span style="color: #F8F8F2"> BackgroundFetch.</span><span style="color: #A6E22E">configure</span><span style="color: #F8F8F2">({</span>
+<span style="color: #F8F8F2">      minimumFetchInterval: </span><span style="color: #AE81FF">15</span>
+<span style="color: #F8F8F2">    }, </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F">taskId</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {  </span><span style="color: #88846F">// &lt;---------------- Event handler.</span>
+<span style="color: #F8F8F2">      console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] EVENT:&#039;</span><span style="color: #F8F8F2">, taskId);</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// Perform your work in an awaited Promise</span>
+<span style="color: #F8F8F2">      </span><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> result </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">await</span><span style="color: #F8F8F2"> </span><span style="color: #FD971F">this</span><span style="color: #F8F8F2">.</span><span style="color: #A6E22E">performYourWorkHere</span><span style="color: #F8F8F2">();</span>
+<span style="color: #F8F8F2">      console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] work complete:&#039;</span><span style="color: #F8F8F2">, result);</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// [REQUIRED] Signal to the OS that your work is complete.</span>
+<span style="color: #F8F8F2">      BackgroundFetch.</span><span style="color: #A6E22E">finish</span><span style="color: #F8F8F2">(taskId);</span>
+<span style="color: #F8F8F2">    }, </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F">taskId</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {  </span><span style="color: #88846F">// &lt;---------------- Event timeout handler</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// The OS has signalled that your remaining background-time has expired.</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// You must immediately complete your work and signal #finish.</span>
+<span style="color: #F8F8F2">      console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] TIMEOUT:&#039;</span><span style="color: #F8F8F2">, taskId);</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// [REQUIRED] Signal to the OS that your work is complete.</span>
+<span style="color: #F8F8F2">      BackgroundFetch.</span><span style="color: #A6E22E">finish</span><span style="color: #F8F8F2">(taskId);</span>
+<span style="color: #F8F8F2">    });</span>
+
+<span style="color: #F8F8F2">    </span><span style="color: #88846F">// Checking BackgroundFetch status:</span>
+<span style="color: #F8F8F2">    </span><span style="color: #F92672">if</span><span style="color: #F8F8F2"> (status </span><span style="color: #F92672">!==</span><span style="color: #F8F8F2"> BackgroundFetch.STATUS_AVAILABLE) {</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// Uh-oh:  we have a problem:</span>
+<span style="color: #F8F8F2">      </span><span style="color: #F92672">if</span><span style="color: #F8F8F2"> (status </span><span style="color: #F92672">===</span><span style="color: #F8F8F2"> BackgroundFetch.STATUS_DENIED) {</span>
+<span style="color: #F8F8F2">        </span><span style="color: #A6E22E">alert</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;The user explicitly disabled background behavior for this app or for the whole system.&#039;</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">      } </span><span style="color: #F92672">else</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">if</span><span style="color: #F8F8F2"> (status </span><span style="color: #F92672">===</span><span style="color: #F8F8F2"> BackgroundFetch.STATUS_RESTRICTED) {</span>
+<span style="color: #F8F8F2">        </span><span style="color: #A6E22E">alert</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;Background updates are unavailable and the user cannot enable them again.&#039;</span><span style="color: #F8F8F2">)</span>
+<span style="color: #F8F8F2">      }</span>
+<span style="color: #F8F8F2">    }</span>
+<span style="color: #F8F8F2">  }</span>
+
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Simulate a long-running task (eg:  an HTTP request)</span>
+<span style="color: #F8F8F2">  async </span><span style="color: #A6E22E">performYourWorkHere</span><span style="color: #F8F8F2">() {</span>
+<span style="color: #F8F8F2">    </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">Promise</span><span style="color: #F8F8F2">((</span><span style="color: #FD971F">resolve</span><span style="color: #F8F8F2">, </span><span style="color: #FD971F">reject</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">      </span><span style="color: #66D9EF">setTimeout</span><span style="color: #F8F8F2">(() </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">        </span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(</span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">      }, </span><span style="color: #AE81FF">5000</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">    });</span>
+<span style="color: #F8F8F2">  }</span>
+<span style="color: #F8F8F2">}</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <a href="../interfaces/backgroundfetchconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">BackgroundFetchConfig</a></h5>
+								</li>
+								<li>
+									<h5>onEvent: <span class="tsd-signature-symbol">(</span>taskId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>taskId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>taskId: <span class="tsd-signature-type">string</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onTimeout: <span class="tsd-signature-symbol">(</span>taskId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>taskId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>taskId: <span class="tsd-signature-type">string</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="finish" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> finish</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">finish<span class="tsd-signature-symbol">(</span>taskId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>You must execute <code>BackgroundFetch.finish(taskId)</code> within your fetch-callback to signal completion of your task.</p>
+								</div>
+								<p>If you <em>fail</em> to call <code>.finish()</code>, the OS <strong>will punish your app for poor behaviour and stop firing events</strong>.</p>
+								<pre><code class="language-javascript"><span style="color: #F92672">await</span><span style="color: #F8F8F2"> BackgroundFetch.</span><span style="color: #A6E22E">configure</span><span style="color: #F8F8F2">({</span>
+<span style="color: #F8F8F2">  minimumFetchInterval: </span><span style="color: #AE81FF">15</span>
+<span style="color: #F8F8F2">}, </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F">taskId</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">  console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] EVENT&#039;</span><span style="color: #F8F8F2">, taskId);</span>
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Always signal completion of your tasks.</span>
+<span style="color: #F8F8F2">  BackgroundFetch.</span><span style="color: #A6E22E">finish</span><span style="color: #F8F8F2">(taskId);</span>
+<span style="color: #F8F8F2">}, </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F">taskId</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">  console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] TIMEOUT&#039;</span><span style="color: #F8F8F2">, taskId);</span>
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Always signal completion of your tasks.</span>
+<span style="color: #F8F8F2">  BackgroundFetch.</span><span style="color: #A6E22E">finish</span><span style="color: #F8F8F2">(taskId);</span>
+<span style="color: #F8F8F2">});</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>taskId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="scheduletask" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> schedule<wbr>Task</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">schedule<wbr>Task<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../interfaces/taskconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">TaskConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Execute a custom task in addition to the one initially provided to <a href="backgroundfetch.html#configure">configure</a>.
+									This event can be configured to either a &quot;ONE-SHOT&quot; or &quot;PERIODIC&quot; with <a href="../interfaces/taskconfig.html#periodic">TaskConfig.periodic</a>.</p>
+								</div>
+								<pre><code class="language-javascript"><span style="color: #88846F">// You must ALWAYS first configure BackgroundFetch.</span>
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> status </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">await</span><span style="color: #F8F8F2"> BackgroundFetch.</span><span style="color: #A6E22E">configure</span><span style="color: #F8F8F2">({</span>
+<span style="color: #F8F8F2">  minimumFetchInterval: </span><span style="color: #AE81FF">15</span>
+<span style="color: #F8F8F2">}, </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F">taskId</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">  console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] EVENT&#039;</span><span style="color: #F8F8F2">, taskId);</span>
+<span style="color: #F8F8F2">  </span><span style="color: #F92672">if</span><span style="color: #F8F8F2"> (taskId </span><span style="color: #F92672">===</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#039;my-custom-task&#039;</span><span style="color: #F8F8F2">) {</span>
+<span style="color: #F8F8F2">    console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;Handle your custom-task here&#039;</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">  } </span><span style="color: #F92672">else</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">    console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;This is the default, periodic fetch task&#039;</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">  }</span>
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Always signal completion of your tasks.</span>
+<span style="color: #F8F8F2">  BackgroundFetch.</span><span style="color: #A6E22E">finish</span><span style="color: #F8F8F2">(taskId);</span>
+<span style="color: #F8F8F2">}, </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F">taskId</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">  console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] TIMEOUT&#039;</span><span style="color: #F8F8F2">, taskId);</span>
+<span style="color: #F8F8F2">  </span><span style="color: #F92672">if</span><span style="color: #F8F8F2"> (taskId </span><span style="color: #F92672">===</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#039;my-custom-task&#039;</span><span style="color: #F8F8F2">) {</span>
+<span style="color: #F8F8F2">    console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;My custom task timed-out&#039;</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">  } </span><span style="color: #F92672">else</span><span style="color: #F8F8F2"> {</span>
+<span style="color: #F8F8F2">    console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;The default, periodic fetch task timed-out&#039;</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">  }</span>
+<span style="color: #F8F8F2">  BackgroundFetch.</span><span style="color: #A6E22E">finish</span><span style="color: #F8F8F2">(taskId);</span>
+<span style="color: #F8F8F2">});</span>
+
+<span style="color: #88846F">// Execute an additional custom-task.</span>
+<span style="color: #F8F8F2">BackgroundFetch.</span><span style="color: #A6E22E">scheduleTask</span><span style="color: #F8F8F2">({</span>
+<span style="color: #F8F8F2">  taskId: </span><span style="color: #E6DB74">&#039;my-custom-task&#039;</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// &lt;-- REQUIRED</span>
+<span style="color: #F8F8F2">  delay: </span><span style="color: #AE81FF">10000</span><span style="color: #F8F8F2">,              </span><span style="color: #88846F">// &lt;-- REQUIRED</span>
+<span style="color: #F8F8F2">  periodic: </span><span style="color: #AE81FF">false</span><span style="color: #F8F8F2">            </span><span style="color: #88846F">// &lt;-- ONE-SHOT (default)</span>
+<span style="color: #F8F8F2">})</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <a href="../interfaces/taskconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">TaskConfig</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="start" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> start</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Start subscribing to fetch events.</p>
+								</div>
+								<p><strong>Note:</strong> The inital call to <a href="backgroundfetch.html#configure">configure</a> <em>automatically</em> calls <strong><code>BackgroundFetch.start()</code></strong></p>
+								<pre><code class="language-javascript"><span style="color: #F8F8F2">  async </span><span style="color: #A6E22E">initBackgroundFetch</span><span style="color: #F8F8F2">() {</span>
+<span style="color: #F8F8F2">    </span><span style="color: #88846F">// Calling .configure() automatically starts the plugin.</span>
+<span style="color: #F8F8F2">    </span><span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> status </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">await</span><span style="color: #F8F8F2"> BackgroundFetch.</span><span style="color: #A6E22E">configure</span><span style="color: #F8F8F2">({</span>
+<span style="color: #F8F8F2">      minimumFetchInterval: </span><span style="color: #AE81FF">15</span>
+<span style="color: #F8F8F2">    }, </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F">taskId</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {  </span><span style="color: #88846F">// &lt;---------------- Event handler.</span>
+<span style="color: #F8F8F2">      console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] EVENT:&#039;</span><span style="color: #F8F8F2">, taskId);</span>
+<span style="color: #F8F8F2">      BackgroundFetch.</span><span style="color: #A6E22E">finish</span><span style="color: #F8F8F2">(taskId);</span>
+<span style="color: #F8F8F2">    }, </span><span style="color: #F92672">async</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F">taskId</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF">=&gt;</span><span style="color: #F8F8F2"> {  </span><span style="color: #88846F">// &lt;---------------- Event timeout handler</span>
+<span style="color: #F8F8F2">      console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;[BackgroundFetch] TIMEOUT:&#039;</span><span style="color: #F8F8F2">, taskId);</span>
+<span style="color: #F8F8F2">      </span><span style="color: #88846F">// [REQUIRED] Signal to the OS that your work is complete.</span>
+<span style="color: #F8F8F2">      BackgroundFetch.</span><span style="color: #A6E22E">finish</span><span style="color: #F8F8F2">(taskId);</span>
+<span style="color: #F8F8F2">    });</span>
+<span style="color: #F8F8F2">  }</span>
+
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Stop BackgroundFetch</span>
+<span style="color: #F8F8F2">  </span><span style="color: #A6E22E">onClickStop</span><span style="color: #F8F8F2">() {</span>
+<span style="color: #F8F8F2">    BackgroundFetch.</span><span style="color: #A6E22E">stop</span><span style="color: #F8F8F2">();</span>
+<span style="color: #F8F8F2">  }</span>
+
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Re-start BackgroundFetch</span>
+<span style="color: #F8F8F2">  </span><span style="color: #A6E22E">onClickStart</span><span style="color: #F8F8F2">() {</span>
+<span style="color: #F8F8F2">    BackgroundFetch.</span><span style="color: #A6E22E">start</span><span style="color: #F8F8F2">();</span>
+<span style="color: #F8F8F2">  }</span>
+
+</code></pre>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="status" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> status</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Query the BackgroundFetch API status</p>
+								</div>
+								<pre><code class="language-javascript"><span style="color: #88846F">// Checking BackgroundFetch status:</span>
+<span style="color: #66D9EF">const</span><span style="color: #F8F8F2"> status </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">await</span><span style="color: #F8F8F2"> BackgroundFetch.</span><span style="color: #A6E22E">status</span><span style="color: #F8F8F2">();</span>
+
+<span style="color: #F92672">if</span><span style="color: #F8F8F2"> (status </span><span style="color: #F92672">!==</span><span style="color: #F8F8F2"> BackgroundFetch.STATUS_AVAILABLE) {</span>
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Uh-oh:  we have a problem:</span>
+<span style="color: #F8F8F2">  </span><span style="color: #F92672">if</span><span style="color: #F8F8F2"> (status </span><span style="color: #F92672">===</span><span style="color: #F8F8F2"> BackgroundFetch.STATUS_DENIED) {</span>
+<span style="color: #F8F8F2">    </span><span style="color: #A6E22E">alert</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;The user explicitly disabled background behavior for this app or for the whole system.&#039;</span><span style="color: #F8F8F2">);</span>
+<span style="color: #F8F8F2">  } </span><span style="color: #F92672">else</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">if</span><span style="color: #F8F8F2"> (status </span><span style="color: #F92672">===</span><span style="color: #F8F8F2"> BackgroundFetch.STATUS_RESTRICTED) {</span>
+<span style="color: #F8F8F2">    </span><span style="color: #A6E22E">alert</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;Background updates are unavailable and the user cannot enable them again.&#039;</span><span style="color: #F8F8F2">)</span>
+<span style="color: #F8F8F2">  }</span>
+<span style="color: #F8F8F2">}</span>
+</code></pre>
+								<table>
+									<thead>
+										<tr>
+											<th>BackgroundFetchStatus</th>
+											<th>Description</th>
+										</tr>
+									</thead>
+									<tbody><tr>
+											<td><code>BackgroundFetch.STATUS_RESTRICTED</code></td>
+											<td>Background fetch updates are unavailable and the user cannot enable them again. For example, this status can occur when parental controls are in effect for the current user.</td>
+										</tr>
+										<tr>
+											<td><code>BackgroundFetch.STATUS_DENIED</code></td>
+											<td>The user explicitly disabled background behavior for this app or for the whole system.</td>
+										</tr>
+										<tr>
+											<td><code>BackgroundFetch.STATUS_AVAILABLE</code></td>
+											<td>Background fetch is available and enabled.</td>
+										</tr>
+								</tbody></table>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../index.html#backgroundfetchstatus" class="tsd-signature-type" data-tsd-kind="Type alias">BackgroundFetchStatus</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="stop" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> stop</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">stop<span class="tsd-signature-symbol">(</span>taskId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Stop subscribing to fetch events.</p>
+								</div>
+								<pre><code class="language-javascript"><span style="color: #88846F">// Stop everything.</span>
+<span style="color: #F8F8F2">BackgroundFetch.</span><span style="color: #A6E22E">stop</span><span style="color: #F8F8F2">();</span>
+</code></pre>
+								<p>You may also provide an optional <strong><code>taskId</code></strong> to stop a <a href="backgroundfetch.html#scheduletask">scheduleTask</a>:</p>
+								<pre><code class="language-javascript"><span style="color: #88846F">// Stop a particular task scheduled with BackgroundFetch.scheduleTask</span>
+<span style="color: #F92672">await</span><span style="color: #F8F8F2"> BackgroundFetch.</span><span style="color: #A6E22E">scheduleTask</span><span style="color: #F8F8F2">({</span>
+<span style="color: #F8F8F2">  taskId: </span><span style="color: #E6DB74">&#039;my-custom-task&#039;</span><span style="color: #F8F8F2">,</span>
+<span style="color: #F8F8F2">  delay: </span><span style="color: #AE81FF">10000</span><span style="color: #F8F8F2">,</span>
+<span style="color: #F8F8F2">  periodic: </span><span style="color: #AE81FF">false</span>
+<span style="color: #F8F8F2">});</span>
+<span style="color: #F8F8F2">.</span>
+<span style="color: #F8F8F2">.</span>
+<span style="color: #F8F8F2">.</span>
+<span style="color: #F8F8F2">BackgroundFetch.</span><span style="color: #A6E22E">stop</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#039;my-custom-task&#039;</span><span style="color: #F8F8F2">);</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> taskId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="backgroundfetch.html" class="tsd-kind-icon">Background<wbr>Fetch</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="backgroundfetch.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#network_type_any" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>ANY</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#network_type_cellular" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>CELLULAR</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#network_type_none" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>NONE</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#network_type_not_roaming" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>NOT_<wbr>ROAMING</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#network_type_unmetered" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>UNMETERED</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#status_available" class="tsd-kind-icon">STATUS_<wbr>AVAILABLE</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#status_denied" class="tsd-kind-icon">STATUS_<wbr>DENIED</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#status_restricted" class="tsd-kind-icon">STATUS_<wbr>RESTRICTED</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#configure" class="tsd-kind-icon">configure</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#finish" class="tsd-kind-icon">finish</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#scheduletask" class="tsd-kind-icon">schedule<wbr>Task</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#start" class="tsd-kind-icon">start</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#status" class="tsd-kind-icon">status</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#stop" class="tsd-kind-icon">stop</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/backgroundfetchconfig.html" class="tsd-kind-icon">Background<wbr>Fetch<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/taskconfig.html" class="tsd-kind-icon">Task<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#backgroundfetchstatus" class="tsd-kind-icon">Background<wbr>Fetch<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#networktype" class="tsd-kind-icon">Network<wbr>Type</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="backgroundfetch.html" class="tsd-kind-icon">Background<wbr>Fetch</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="backgroundfetch.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#network_type_any" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>ANY</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#network_type_cellular" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>CELLULAR</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#network_type_none" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>NONE</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#network_type_not_roaming" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>NOT_<wbr>ROAMING</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#network_type_unmetered" class="tsd-kind-icon">NETWORK_<wbr>TYPE_<wbr>UNMETERED</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#status_available" class="tsd-kind-icon">STATUS_<wbr>AVAILABLE</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#status_denied" class="tsd-kind-icon">STATUS_<wbr>DENIED</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#status_restricted" class="tsd-kind-icon">STATUS_<wbr>RESTRICTED</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#configure" class="tsd-kind-icon">configure</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#finish" class="tsd-kind-icon">finish</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#scheduletask" class="tsd-kind-icon">schedule<wbr>Task</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#start" class="tsd-kind-icon">start</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#status" class="tsd-kind-icon">status</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="backgroundfetch.html#stop" class="tsd-kind-icon">stop</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/backgroundfetchconfig.html" class="tsd-kind-icon">Background<wbr>Fetch<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/taskconfig.html" class="tsd-kind-icon">Task<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#backgroundfetchstatus" class="tsd-kind-icon">Background<wbr>Fetch<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#networktype" class="tsd-kind-icon">Network<wbr>Type</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-102968-14', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>
