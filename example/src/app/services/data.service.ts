@@ -1,83 +1,64 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@capacitor/storage';
 
-export interface Message {
-  fromName: string;
-  subject: string;
-  date: string;
-  id: number;
-  read: boolean;
+
+const DATE_FORMAT:any = {
+  month: '2-digit',
+  day: '2-digit',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+  hour12: false
+};
+
+export interface FetchEvent {
+  headless: boolean;
+  taskId: string;
+  timestamp: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService {
-  public messages: Message[] = [
-    {
-      fromName: 'Matt Chorsey',
-      subject: 'New event: Trip to Vegas',
-      date: '9:32 AM',
-      id: 0,
-      read: false
-    },
-    {
-      fromName: 'Lauren Ruthford',
-      subject: 'Long time no chat',
-      date: '6:12 AM',
-      id: 1,
-      read: false
-    },
-    {
-      fromName: 'Jordan Firth',
-      subject: 'Report Results',
-      date: '4:55 AM',
-      id: 2,
-      read: false
-    },
-    {
-      fromName: 'Bill Thomas',
-      subject: 'The situation',
-      date: 'Yesterday',
-      id: 3,
-      read: false
-    },
-    {
-      fromName: 'Joanne Pollan',
-      subject: 'Updated invitation: Swim lessons',
-      date: 'Yesterday',
-      id: 4,
-      read: false
-    },
-    {
-      fromName: 'Andrea Cornerston',
-      subject: 'Last minute ask',
-      date: 'Yesterday',
-      id: 5,
-      read: false
-    },
-    {
-      fromName: 'Moe Chamont',
-      subject: 'Family Calendar - Version 1',
-      date: 'Last Week',
-      id: 6,
-      read: false
-    },
-    {
-      fromName: 'Kelly Richardson',
-      subject: 'Placeholder Headhots',
-      date: 'Last Week',
-      id: 7,
-      read: false
-    }
-  ];
+  public events: FetchEvent[] = [];
 
-  constructor() { }
-
-  public getMessages(): Message[] {
-    return this.messages;
+  constructor() {
+    this.init();
   }
 
-  public getMessageById(id: number): Message {
-    return this.messages[id];
+  async init() {
+    await Storage.configure({group: 'BackgroundFetchDemo'});
+
+    // Load persisted events from localStorage.
+    let {value} = await Storage.get({key: 'events'});
+    if (value === null) {
+      value = '[]';
+      await Storage.set({key: 'events', value: value});
+    }
+    this.events = this.events.concat(JSON.parse(value));
+  }
+  public async create(taskId:string, isHeadless:boolean = false) {
+    this.events.push({
+      taskId: taskId,
+      headless: isHeadless,
+      timestamp: this.getTimestamp(new Date())
+    });
+    await Storage.set({key: 'events', value: JSON.stringify(this.events)});
+  }
+
+  public async destroy() {
+    this.events = [];
+    await Storage.set({key: 'events', value: '[]'});
+  }
+
+  public getEvents(): FetchEvent[] {
+    return this.events;
+  }
+
+  public getTimestamp(date: Date) {
+    return new Intl.DateTimeFormat('en-US', DATE_FORMAT).format(date)
+
   }
 }

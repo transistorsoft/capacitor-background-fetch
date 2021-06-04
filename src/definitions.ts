@@ -98,7 +98,7 @@ interface AbstractConfig {
   *
   * By default,  the `BackgroundFetch` Android SDK will use [JobScheduler](https://medium.com/google-developers/scheduling-jobs-like-a-pro-with-jobscheduler-286ef8510129) to schedule tasks, which are subject to throttling.  For more accurate scheduling of tasks (at the expense of higher battery-usage), you can tell `BackgroundFetch` to use Android's [AlarmManager](https://developer.android.com/training/scheduling/alarms).
   *
-  * __Note__:  All "criteria" options will no longer apply, since these are available only with [[JobScheduler]].
+  * __Note__:  All "criteria" options will no longer apply, since these are available only with [JobScheduler](https://medium.com/google-developers/scheduling-jobs-like-a-pro-with-jobscheduler-286ef8510129).
   *
   * - [[requiredNetworkType]]
   * - [[requiresBatteryNotLow]]

@@ -12,6 +12,10 @@
 		"classpath": "com.capacitorjs.plugins.keyboard.KeyboardPlugin"
 	},
 	{
+		"pkg": "@capacitor/storage",
+		"classpath": "com.capacitorjs.plugins.storage.StoragePlugin"
+	},
+	{
 		"pkg": "@transistorsoft/capacitor-background-fetch",
 		"classpath": "com.transistorsoft.bgfetch.capacitor.BackgroundFetchPlugin"
 	}
