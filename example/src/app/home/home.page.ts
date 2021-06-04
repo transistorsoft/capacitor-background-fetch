@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
-import { DataService, Message } from '../services/data.service';
+import {
+  Component,
+  NgZone } from '@angular/core';
+
+import {AlertController} from '@ionic/angular';
+
+import { DataService, FetchEvent } from '../services/data.service';
 
 import {BackgroundFetch} from '@transistorsoft/capacitor-background-fetch';
 
@@ -9,19 +14,31 @@ import {BackgroundFetch} from '@transistorsoft/capacitor-background-fetch';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private data: DataService) {}
+  state:any = {
+    enabled:true,
+    status: -1
+  }
+
+  constructor(private data: DataService, private alertController:AlertController, private zone: NgZone) {}
 
   ionViewWillEnter() {
     this.initBackgroundFetch();
   }
 
   async initBackgroundFetch() {
+
     const status = await BackgroundFetch.configure({
       minimumFetchInterval: 15,
       stopOnTerminate: false,
       enableHeadless: true
     }, async (taskId) => {
       console.log('[BackgroundFetch] EVENT:', taskId);
+
+      // Add record to list within NgZone
+      this.zone.run(() => {
+        this.data.create(taskId, false);
+      });
+
       // Perform your work in an awaited Promise
       const result = await this.performYourWorkHere();
       console.log('[BackgroundFetch] work complete:', result);
@@ -35,8 +52,11 @@ export class HomePage {
       BackgroundFetch.finish(taskId);
     });
 
+    this.state.status = status;
+
     // Checking BackgroundFetch status:
     if (status !== BackgroundFetch.STATUS_AVAILABLE) {
+      this.state.enabled = false;
       // Uh-oh:  we have a problem:
       if (status === BackgroundFetch.STATUS_DENIED) {
         alert('The user explicitly disabled background behavior for this app or for the whole system.');
@@ -46,22 +66,68 @@ export class HomePage {
     }
   }
 
+  onClickClear() {
+    this.data.destroy();
+  }
+
   async performYourWorkHere() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(true);
-      }, 5000);
+      }, 1000);
     });
   }
 
-  refresh(ev) {
-    setTimeout(() => {
-      ev.detail.complete();
-    }, 3000);
+  async onToggleEnabled() {
+    if (!this.state.enabled) {
+      await BackgroundFetch.stop();
+    } else {
+      await BackgroundFetch.start();
+    }
   }
 
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  async onClickScheduleTask() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Schedule Task',
+      inputs: [{
+        name: 'taskId',
+        type: 'text',
+        value: 'com.transistorsoft.customtask',
+        placeholder: 'Task identifier (eg: com.transistorsoft.customtask'
+      },{
+        name: 'delay',
+        label: 'Delay',
+        type: 'number',
+        placeholder: 'Delay in milliseconds'
+      }],
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Confirm Cancel');
+        }
+      }, {
+        text: 'Submit',
+        handler: (result) => {
+          if (!result.delay) {
+            window.alert('You must specify a delay in milliseconds');
+            setTimeout(this.onClickScheduleTask.bind(this), 1);
+            return;
+          }
+          BackgroundFetch.scheduleTask({
+            taskId: result.taskId,
+            delay: result.delay
+          });
+        }
+      }]
+    });
+    await alert.present();
+  }
+
+  getEvents(): FetchEvent[] {
+    return this.data.getEvents();
   }
 
 }

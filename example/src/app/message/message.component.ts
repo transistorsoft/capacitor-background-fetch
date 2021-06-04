@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Message } from '../services/data.service';
+import { FetchEvent } from '../services/data.service';
 
 @Component({
   selector: 'app-message',
@@ -7,14 +7,10 @@ import { Message } from '../services/data.service';
   styleUrls: ['./message.component.scss'],
 })
 export class MessageComponent implements OnInit {
-  @Input() message: Message;
+  @Input() event: FetchEvent;
 
   constructor() { }
 
   ngOnInit() {}
 
-  isIos() {
-    const win = window as any;
-    return win && win.Ionic && win.Ionic.mode === 'ios';
-  }
 }
