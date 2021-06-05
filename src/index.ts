@@ -241,6 +241,14 @@ export class BackgroundFetch {
   */
   static scheduleTask(config:TaskConfig):Promise<void> {
     return new Promise((resolve, reject) => {
+      if (typeof(config.delay) !== 'number') {
+        const delay = parseInt(config.delay, 10);
+        if (delay === NaN) {
+          reject('[BackgroundFetch] TaskConfig.delay must be a number: ' + config.delay);
+          return;
+        }
+        config.delay = delay;
+      }
       return NativeModule.scheduleTask({options:config}).then(() => {
         resolve();
       }).catch((error:PluginResultError) => {

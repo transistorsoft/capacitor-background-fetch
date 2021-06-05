@@ -12,20 +12,26 @@
 <ion-content>
   <ion-list>
     <app-message *ngFor="let event of getEvents()" [event]="event"></app-message>
+
+    <ion-item *ngIf="getEvents().length <= 0">
+      <ion-label class="ion-text-wrap">
+        <h2>Waiting for events.  See the <a href="https://github.com/transistorsoft/capacitor-background-fetch#debugging-1">Debugging</a> section in README to learn how to simulate an event.</h2>
+      </ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar color="default">
     <ion-buttons slot="start">
-      <ion-button color="danger" fill="solid" (click)="onClickClear()">clear</ion-button>
+      <ion-button color="danger" fill="clear" (click)="onClickClear()">Clear</ion-button>
     </ion-buttons>
 
     <ion-title>
       Status:&nbsp;<span ion-text>{{this.state.status}}</span>
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button color="primary" fill="solid" (click)="onClickScheduleTask()">schedule Task</ion-button>
+      <ion-button color="primary" fill="clear" expand="block" (click)="onClickScheduleTask()">Schedule task</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
