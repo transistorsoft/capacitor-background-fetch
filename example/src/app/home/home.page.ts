@@ -26,7 +26,6 @@ export class HomePage {
   }
 
   async initBackgroundFetch() {
-
     const status = await BackgroundFetch.configure({
       minimumFetchInterval: 15,
       stopOnTerminate: false,
