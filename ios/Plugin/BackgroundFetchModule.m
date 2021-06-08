@@ -1,4 +1,4 @@
-#import "Plugin.h"
+#import "BackgroundFetchModule.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -11,7 +11,7 @@ static NSString *const BACKGROUND_FETCH_TAG = @"BackgroundFetchPlugin";
 static NSString *const EVENT_FETCH = @"fetch";
 static NSString *const PLUGIN_ID = @"capacitor-background-fetch";
 
-@implementation Plugin {
+@implementation BackgroundFetchModule {
     BOOL configured;
 }
 

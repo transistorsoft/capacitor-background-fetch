@@ -6,7 +6,7 @@
 
 @class CAPPluginCall;
 
-@interface Plugin : CAPPlugin
+@interface BackgroundFetchModule : CAPPlugin
 
 @end
 
