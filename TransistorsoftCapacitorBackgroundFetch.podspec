@@ -14,5 +14,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '12.0'
   s.dependency 'Capacitor'
   s.vendored_frameworks = ['ios/TSBackgroundFetch.xcframework']
+  s.static_framework = true
   s.swift_version = '5.1'
 end
