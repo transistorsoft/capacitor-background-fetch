@@ -35,7 +35,10 @@ let subscriber:PluginListenerHandle | null = null;
 * import {BackgroundFetch} from '@transistorsoft/capacitor-background-fetch';
 *
 * class HomePage {
-*   ionViewWillEnter() {
+*
+*   // Initialize in ngAfterContentInit
+*   // [WARNING] DO NOT use ionViewWillEnter, as that method won't run when app is launched in background.
+*   ngAfterContentInit() {
 *     this.initBackgroundFetch();
 *   }
 *

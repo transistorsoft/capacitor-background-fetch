@@ -22,6 +22,10 @@ export class HomePage {
   constructor(private data: DataService, private alertController:AlertController, private zone: NgZone) {}
 
   ionViewWillEnter() {
+
+  }
+
+  ngAfterContentInit() {
     this.initBackgroundFetch();
   }
 
