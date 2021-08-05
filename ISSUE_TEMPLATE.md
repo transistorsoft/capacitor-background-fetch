@@ -1,23 +1,18 @@
 <!--
+*****************************************************************
+* WARNING:  If you ignore this template, so too will your issue
+*****************************************************************
 
-WARNING:  If you ignore this template, so too will your issue
-
-Provide a general summary of the issue in the Title above. Please use syntax highlighting when posting code. Wrap your code in three(3) back ticks (```) . Thank you.
-
+  Provide a general summary of the issue in the Title above
 -->
-
 ## Your Environment
 * Plugin version:
 * Platform: iOS or Android
-* OS version:
+* Device OS version:
 * Device manufacturer / model:
-* Capacitor Version
+* XCode version:
+* Capacitor info (`npx cap doctor`)
 * Plugin config provided to `BackgroundFetch.configure`:
-```javascript <!-- syntax-highlighting:  paste your code below -->
-
-INSERT_YOUR_CODE_HERE
-
-```
 
 ## Expected Behavior
 <!--- Tell us what should happen -->
@@ -38,14 +33,6 @@ INSERT_YOUR_CODE_HERE
 ## Debug logs
 <!-- include iOS / Android logs
 - ios XCode logs,
+- use #getLog #emailLog methods (@see docs)
 - Android: $ adb logcat
 -->
-<details>
-	<summary>Logs</summary>
-
-```<!-- Syntax highlighting:  DO NOT REMOVE -->
-PASTE_YOUR_LOGS_HERE
-```
-
-</details>
-
