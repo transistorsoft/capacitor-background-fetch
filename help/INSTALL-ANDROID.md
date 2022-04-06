@@ -24,7 +24,7 @@ The SDK requires a custom __`maven url`__ in the root __`android/build.gradle`__
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
 +       maven {
 +           // capacitor-background-fetch
 +           url("${project(':transistorsoft-capacitor-background-fetch').projectDir}/libs")
