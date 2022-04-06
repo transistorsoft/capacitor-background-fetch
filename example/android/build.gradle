@@ -4,6 +4,7 @@ buildscript {
 
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
     dependencies {
@@ -20,6 +21,7 @@ apply from: "variables.gradle"
 allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
         maven {
           url("${project(':transistorsoft-capacitor-background-fetch').projectDir}/libs")
