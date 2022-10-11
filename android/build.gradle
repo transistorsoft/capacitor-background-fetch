@@ -5,6 +5,7 @@ ext {
     androidxEspressoCoreVersion = project.hasProperty('androidxEspressoCoreVersion') ? rootProject.ext.androidxEspressoCoreVersion : '3.3.0'
 }
 
+
 buildscript {
     repositories {
         google()
@@ -16,6 +17,13 @@ buildscript {
 }
 
 apply plugin: 'com.android.library'
+
+def DEFAULT_LIFE_CYCLE_RUNTIME_VERSION          = "2.4.1"
+def DEFAULT_LIFE_CYCLE_EXTENSIONS_VERSION       = "2.2.0"
+
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
 
 android {
     compileSdkVersion project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 30
@@ -50,9 +58,16 @@ repositories {
 }
 
 dependencies {
+    def lifeCycleRuntimeVersion = safeExtGet('lifeCycleRuntimeVersion', DEFAULT_LIFE_CYCLE_RUNTIME_VERSION)
+    def lifeCycleExtensionsVersion = safeExtGet('lifeCycleExtensionsVersion', DEFAULT_LIFE_CYCLE_EXTENSIONS_VERSION)
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    // LifeCycleObserver
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifeCycleRuntimeVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycleExtensionsVersion"
+
     api(group: 'com.transistorsoft', name:'tsbackgroundfetch', version: '+')
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"

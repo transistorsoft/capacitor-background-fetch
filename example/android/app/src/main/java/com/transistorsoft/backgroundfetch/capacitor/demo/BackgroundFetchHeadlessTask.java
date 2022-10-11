@@ -32,7 +32,7 @@ public class BackgroundFetchHeadlessTask{
     // Get the taskId.
     String taskId = task.getTaskId();
     // Log a message to adb logcat.
-    Log.d("TSBackgroundFetch", "\uD83D\uDC80 BackgroundFetchHeadlessTask onFetch" + taskId);
+    Log.d("TSBackgroundFetch", "\uD83D\uDC80 Custom BackgroundFetchHeadlessTask onFetch: " + taskId);
 
     boolean isTimeout = task.getTimedOut();
     // Is this a timeout?
