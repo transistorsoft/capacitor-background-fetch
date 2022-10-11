@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [1.0.1] &mdash; 2022-10-11
+* [Android] Use `LifecycleManager` for modern headless-detection instead of legacy mechanism requiring permission `GET_TASKS`.
+
 ## [1.0.0] &mdash; 2022-04-06
 * [Android] Update for Android 12:  add new required permission android.permission.SCHEDULE_EXACT_ALARM
 
