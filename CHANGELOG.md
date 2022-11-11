@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [1.0.2] &mdash; 2022-11-11
+* Update peerDependencies `"@capacitor/core": "^4.0.0"`.
+
 ## [1.0.1] &mdash; 2022-10-11
 * [Android] Use `LifecycleManager` for modern headless-detection instead of legacy mechanism requiring permission `GET_TASKS`.
 
