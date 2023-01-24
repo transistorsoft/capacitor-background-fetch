@@ -127,7 +127,9 @@ export class HomePage {
           }
           BackgroundFetch.scheduleTask({
             taskId: result.taskId,
-            delay: result.delay
+            delay: result.delay,
+            stopOnTerminate: false,
+            enableHeadless: true
           });
         }
       }]
