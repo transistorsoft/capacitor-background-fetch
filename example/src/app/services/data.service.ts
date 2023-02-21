@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@capacitor/storage';
+import { Preferences } from '@capacitor/preferences';
 
 
 const DATE_FORMAT:any = {
@@ -29,13 +29,13 @@ export class DataService {
   }
 
   async init() {
-    await Storage.configure({group: 'BackgroundFetchDemo'});
+    await Preferences.configure({group: 'BackgroundFetchDemo'});
 
     // Load persisted events from localStorage.
-    let {value} = await Storage.get({key: 'events'});
+    let {value} = await Preferences.get({key: 'events'});
     if (value === null) {
       value = '[]';
-      await Storage.set({key: 'events', value: value});
+      await Preferences.set({key: 'events', value: value});
     }
     this.events = this.events.concat(JSON.parse(value));
   }
@@ -45,12 +45,12 @@ export class DataService {
       headless: isHeadless,
       timestamp: this.getTimestamp(new Date())
     });
-    await Storage.set({key: 'events', value: JSON.stringify(this.events)});
+    await Preferences.set({key: 'events', value: JSON.stringify(this.events)});
   }
 
   public async destroy() {
     this.events = [];
-    await Storage.set({key: 'events', value: '[]'});
+    await Preferences.set({key: 'events', value: '[]'});
   }
 
   public getEvents(): FetchEvent[] {

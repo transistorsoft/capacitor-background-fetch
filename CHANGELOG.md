@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## [1.0.3] &mdash; 2023-02-21
+* [Android] log the jobId in `adb logcat` so that developers can simulate execution of `scheduleTask`:
+```console
+adb shell cmd jobscheduler run -f com.transistorsoft.backgroundfetch.capacitor.demo {jobId_here}
+```
+* Update /example to use latest @capacitor/cli:
+```console
+💊   Capacitor Doctor  💊
+
+Latest Dependencies:
+
+  @capacitor/cli: 4.6.3
+  @capacitor/core: 4.6.3
+  @capacitor/android: 4.6.3
+  @capacitor/ios: 4.6.3
+
+Installed Dependencies:
+
+  @capacitor/cli: 4.6.3
+  @capacitor/core: 4.6.3
+  @capacitor/android: 4.6.3
+  @capacitor/ios: 4.6.3
+```
+
 ## [1.0.2] &mdash; 2022-11-11
 * Update peerDependencies `"@capacitor/core": "^4.0.0"`.
 
