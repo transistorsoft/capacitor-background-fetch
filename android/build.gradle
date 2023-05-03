@@ -26,6 +26,10 @@ def safeExtGet(prop, fallback) {
 }
 
 android {
+    if (project.android.hasProperty("namespace")) {
+        namespace("com.transistorsoft.bgfetch.capacitor")
+    }
+
     compileSdkVersion project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 30
     defaultConfig {
         minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 21

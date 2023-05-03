@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [1.0.4] &mdash; 2023-05-03
+* [Android] Gradle v8 now requires `namespace` attribute in gradle files.
+
 ## [1.0.3] &mdash; 2023-02-21
 * [Android] log the jobId in `adb logcat` so that developers can simulate execution of `scheduleTask`:
 ```console
