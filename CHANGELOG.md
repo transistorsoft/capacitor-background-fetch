@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [5.0.0] &mdash; 2023-05-10
+* Capacitor 5 support.
+
 ## [1.0.4] &mdash; 2023-05-03
 * [Android] Gradle v8 now requires `namespace` attribute in gradle files.
 

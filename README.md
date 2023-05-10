@@ -10,6 +10,11 @@ By [**Transistor Software**](http://transistorsoft.com), creators of [**Capacito
 
 There is **no way** to increase the rate which a fetch-event occurs and this plugin sets the rate to the most frequent possible &mdash; you will **never** receive an event faster than **15 minutes**.  The operating-system will automatically throttle the rate the background-fetch events occur based upon usage patterns.  Eg: if user hasn't turned on their phone for a long period of time, fetch events will occur less frequently or if an iOS user disables background refresh they may not happen at all.
 
+> ### :rotating_light: This plugin requires Capacitor 5 :rotating_light:
+>
+> For Capacitor 4, use the 1.x version of the plugin.
+
+
 :new: Background Fetch now provides a [__`scheduleTask`__](#executing-custom-tasks) method for scheduling arbitrary "one-shot" or periodic tasks.
 
 ### iOS
