@@ -18,4 +18,4 @@ include ':capacitor-preferences'
 project(':capacitor-preferences').projectDir = new File('../node_modules/@capacitor/preferences/android')
 
 include ':transistorsoft-capacitor-background-fetch'
-project(':transistorsoft-capacitor-background-fetch').projectDir = new File('../node_modules/@transistorsoft/capacitor-background-fetch/android')
+project(':transistorsoft-capacitor-background-fetch').projectDir = new File('../../android')

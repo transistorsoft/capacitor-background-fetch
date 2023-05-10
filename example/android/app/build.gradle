@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace "com.transistorsoft.backgroundfetch.capacitor.demo"
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.transistorsoft.backgroundfetch.capacitor.demo"
