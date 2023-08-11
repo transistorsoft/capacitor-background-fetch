@@ -22,8 +22,10 @@ public class BackgroundFetchPlugin extends Plugin {
 
     @Override
     public void load() {
-        Log.d(TAG, "load");
         super.load();
+        Log.d(TAG, "load");
+        // Poke BackgroundFetch to come alive.
+        BackgroundFetch.getInstance(getContext());
     }
 
     @PluginMethod
