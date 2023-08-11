@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [5.1.0] &mdash; 2023-07-31
+* [Android] Android 14 (SDK 34) support..
+* [Android] Android 14 support:  When using `forceAlarmManager: true`, you must now optionally add the permission `android.permission.SCHEDULE_EXACT_ALARM` to your `AndroidManifest` to schedule **exact** alarms.  Otherwise `AlarmManager` will use **in-exact** alarms.
+:open_file_folder: `AndroidManifest`
+```xml
+<manifest>
+    <!-- [background-fetch] OPTIONAL:  allows forceAlarmManager: true to use exact alarms -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="33" />
+    .
+    .
+    .
+</manifest>
+```
+
 ## [5.0.0] &mdash; 2023-05-10
 * Capacitor 5 support.
 

@@ -8,8 +8,6 @@ import { DataService, FetchEvent } from '../services/data.service';
 
 import {BackgroundFetch} from '@transistorsoft/capacitor-background-fetch';
 
-import { Http, HttpResponse } from '@capacitor-community/http';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -47,7 +45,7 @@ export class HomePage {
       // Perform your work in an awaited Promise
       const result = await this.performYourWorkHere();
 
-      console.log('[BackgroundFetch] total books:', result.totalItems);
+      console.log('[BackgroundFetch]', result);
       // [REQUIRED] Signal to the OS that your work is complete.
       BackgroundFetch.finish(taskId);
     }, async (taskId) => {
@@ -77,14 +75,10 @@ export class HomePage {
   }
 
   async performYourWorkHere() {
-    const options = {
-      url: 'https://www.googleapis.com/books/v1/volumes',
-      params: { q: '{http}' },
-    };
-
-    const response: HttpResponse = await Http.get(options);
-    console.log('[HttpRequest] status: ', response.status);
-    return response.data;
+    console.log('[performYourWorkHere]');
+    return {
+      result: true
+    }
   }
 
   async onToggleEnabled() {
