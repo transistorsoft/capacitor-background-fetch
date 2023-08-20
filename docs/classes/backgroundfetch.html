@@ -19,7 +19,7 @@
 					<div class="brand">
 						<a class="logo" href="https://www.transistorsoft.com"><img src="../assets/images/transistor-logo-bw.svg" /></a>
 						<span class="title">
-							<a href="/@transistorsoft/capacitor-background-fetch">[API Docs] capacitor-background-fetch</a>&nbsp;<span class="tsd-flag ts-flagOptional ts-flagVersion">v 0.0.3</span>
+							<a href="/@transistorsoft/capacitor-background-fetch">[API Docs] capacitor-background-fetch</a>&nbsp;<span class="tsd-flag ts-flagOptional ts-flagVersion">v 5.1.1</span>
 						</span>
 					</div>
 				</div>
@@ -79,7 +79,10 @@
 					<pre><code class="language-javascript"><span style="color: #F92672">import</span><span style="color: #F8F8F2"> {BackgroundFetch} </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#039;@transistorsoft/capacitor-background-fetch&#039;</span><span style="color: #F8F8F2">;</span>
 
 <span style="color: #66D9EF">class</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">HomePage</span><span style="color: #F8F8F2"> {</span>
-<span style="color: #F8F8F2">  </span><span style="color: #A6E22E">ionViewWillEnter</span><span style="color: #F8F8F2">() {</span>
+
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// Initialize in ngAfterContentInit</span>
+<span style="color: #F8F8F2">  </span><span style="color: #88846F">// [WARNING] DO NOT use ionViewWillEnter, as that method won&#039;t run when app is launched in background.</span>
+<span style="color: #F8F8F2">  </span><span style="color: #A6E22E">ngAfterContentInit</span><span style="color: #F8F8F2">() {</span>
 <span style="color: #F8F8F2">    </span><span style="color: #FD971F">this</span><span style="color: #F8F8F2">.</span><span style="color: #A6E22E">initBackgroundFetch</span><span style="color: #F8F8F2">();</span>
 <span style="color: #F8F8F2">  }</span>
 
@@ -867,7 +870,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-102968-14', 'auto');
+        ga('create', 'G-4NNZKTE395', 'auto');
         ga('send', 'pageview');
     </script>
 </body>
