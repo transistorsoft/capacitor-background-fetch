@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [5.1.2] Unreleased
+## [5.2.0] &mdash; 2024-03-15
 * [iOS] Only allow registration of `BGProcessingTasks` (*Permitted background task scheduler identifiers*) in `Info.plist` which are prefixed with `com.transistorsoft`.  Any other task identifier will be ignored.
 
 ## [5.1.1] &mdash; 2023-08-20
