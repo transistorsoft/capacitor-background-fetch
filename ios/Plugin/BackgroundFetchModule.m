@@ -75,6 +75,7 @@ static NSString *const PLUGIN_ID = @"capacitor-background-fetch";
     BOOL requiresNetwork = ([config objectForKey:@"requiresNetworkConnectivity"]) ? [[config objectForKey:@"requiresNetworkConnectivity"] boolValue] : NO;
 
     NSError *error = [[TSBackgroundFetch sharedInstance] scheduleProcessingTaskWithIdentifier:taskId
+                                                                                         type:0
                                                                                         delay:delay
                                                                                      periodic:periodic
                                                                         requiresExternalPower: requiresCharging
