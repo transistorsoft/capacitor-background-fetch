@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [5.2.1] &mdash; 2024-03-19
+* [iOS] Implement new [iOS Privacy Manifest](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files?language=objc)
+
 ## [5.2.0] &mdash; 2024-03-15
 * [iOS] Only allow registration of `BGProcessingTasks` (*Permitted background task scheduler identifiers*) in `Info.plist` which are prefixed with `com.transistorsoft`.  Any other task identifier will be ignored.
 
