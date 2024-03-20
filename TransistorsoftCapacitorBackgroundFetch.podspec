@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.vendored_frameworks = ['ios/TSBackgroundFetch.xcframework']
   s.static_framework = true
   s.swift_version = '5.1'
-  s.resource_files = {'TSBackgroundFetch' => ['ios/Resources/PrivacyInfo.xcprivacy']}
+  s.resource_bundles = {'TSBackgroundFetch' => ['ios/Resources/PrivacyInfo.xcprivacy']}
 end
