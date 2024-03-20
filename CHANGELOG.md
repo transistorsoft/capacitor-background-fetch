@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [5.2.1] &mdash; 2024-03-19
+## [5.2.2] &mdash; 2024-03-19
 * [iOS] Implement new [iOS Privacy Manifest](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files?language=objc)
 
 ## [5.2.0] &mdash; 2024-03-15
