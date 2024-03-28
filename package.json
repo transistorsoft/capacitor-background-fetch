@@ -1,6 +1,6 @@
 {
   "name": "@transistorsoft/capacitor-background-fetch",
-  "version": "5.2.3",
+  "version": "5.2.4",
   "description": "Periodic callbacks in the background for both IOS and Android",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -12,6 +12,7 @@
     "android/libs/",
     "dist/",
     "ios/Plugin/",
+    "ios/Resources/",,
     "ios/TSBackgroundFetch.xcframework/",
     "TransistorsoftCapacitorBackgroundFetch.podspec"
   ],

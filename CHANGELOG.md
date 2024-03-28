@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [5.2.4] &mdash; 2024-03-28
+* [iOS] Add `ios/Resources` to package.json or npm publish ignores the new Privacy Manifest.
+
 ## [5.2.3] &mdash; 2024-03-28
 * [iOS] codesign `TSBackgroundFetch`
 * [iOS] Add PrivacyInfo -> TSBackgroundFetch.xcframework
