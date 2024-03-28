@@ -12,7 +12,7 @@
     "android/libs/",
     "dist/",
     "ios/Plugin/",
-    "ios/Resources/",,
+    "ios/Resources/",
     "ios/TSBackgroundFetch.xcframework/",
     "TransistorsoftCapacitorBackgroundFetch.podspec"
   ],
