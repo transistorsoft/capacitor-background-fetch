@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '12.0'
   s.dependency 'Capacitor'
   s.vendored_frameworks = ['ios/TSBackgroundFetch.xcframework']
+  s.resource_bundles = {'TSBackgroundFetchPrivacy' => ['ios/Resources/PrivacyInfo.xcprivacy']}
   s.static_framework = true
   s.swift_version = '5.1'
-  s.resource_bundles = {'TSBackgroundFetch' => ['ios/Resources/PrivacyInfo.xcprivacy']}
 end
