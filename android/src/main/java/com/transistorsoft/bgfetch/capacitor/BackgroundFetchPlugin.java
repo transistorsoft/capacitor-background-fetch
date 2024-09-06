@@ -1,5 +1,6 @@
 package com.transistorsoft.bgfetch.capacitor;
 
+import android.content.pm.PackageManager;
 import android.util.Log;
 
 import com.getcapacitor.JSObject;
@@ -155,7 +156,7 @@ public class BackgroundFetchPlugin extends Plugin {
     }
 
     private String getHeadlessClassName() {
-        return getActivity().getClass().getPackage().getName() + "." + HEADLESS_CLASSNAME;
+        return getContext().getPackageName() + "." + HEADLESS_CLASSNAME;
     }
 
     private BackgroundFetch getAdapter() {
