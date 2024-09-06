@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [6.0.1] &mdash; 2024-09-06
+* [Android] Update default version for `androidx.lifecycle:lifecycle-runtime` to `2.7.0`.
+* [Android] Remove dependency `androidx.appcompat:appcompat` (no longer required).
+
 ## [6.0.0] &mdash; 2024-04-26
 * Ugrade to Capacitor v6.
 
