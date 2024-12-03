@@ -34,16 +34,6 @@ allprojects {
 }
 ```
 
-## Configure __`proguard-rules.pro`__
-
-1.  In *Android Studio*, edit `android/app/proguard-rules.pro (ProGuard rules for android.app)`.
-2.  Add the following rule:
-
-```bash
-# [capacitor-background-fetch]
--keep class **BackgroundFetchHeadlessTask { *; }
-```
-
 ## Precise event-scheduling with `forceAlarmManager: true`:
 
 **Only** If you wish to use precise scheduling of events with __`forceAlarmManager: true`__, *Android 14 (SDK 34)*, has restricted usage of ["`AlarmManager` exact alarms"](https://developer.android.com/about/versions/14/changes/schedule-exact-alarms).  To continue using precise timing of events with *Android 14*, you can manually add this permission to your __`AndroidManifest`__.  Otherwise, the plugin will gracefully fall-back to "*in-exact* `AlarmManager` scheduling":

@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [6.0.2] &mdash; 2024-12-03
+* [Android] Remove Android Setup Step for `proguard-rules.pro`.  The plugin is able to automatically apply its `proguard-rules`.
+
 ## [6.0.1] &mdash; 2024-09-06
 * [Android] Update default version for `androidx.lifecycle:lifecycle-runtime` to `2.7.0`.
 * [Android] Remove dependency `androidx.appcompat:appcompat` (no longer required).
