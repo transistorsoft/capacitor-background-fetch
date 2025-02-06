@@ -1,6 +1,6 @@
 {
   "name": "@transistorsoft/capacitor-background-fetch",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "Periodic callbacks in the background for both IOS and Android",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -53,6 +53,7 @@
   "devDependencies": {
     "@capacitor/android": "^7.0.0",
     "@capacitor/core": "^7.0.0",
+    "@capacitor/docgen": "^0.3.0",
     "@capacitor/ios": "^7.0.0",
     "@ionic/eslint-config": "^0.4.0",
     "@ionic/prettier-config": "^4.0.0",
@@ -61,10 +62,10 @@
     "eslint": "^8.57.0",
     "prettier": "^3.4.2",
     "prettier-plugin-java": "^2.6.6",
-    "rimraf": "^6.0.1",
+    "rimraf": "^5.0.10",
     "rollup": "^4.30.1",
     "swiftlint": "^2.0.0",
-    "typescript": "~4.0.3"
+    "typescript": "~4.1.5"
   },
   "prettier": "@ionic/prettier-config",
   "swiftlint": "@ionic/swiftlint-config",

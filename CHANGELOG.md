@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [7.0.1] &mdash; 2024-02-05
+* Fix plugin buildscript.
+
 ## [7.0.0] &mdash; 2025-02-05
 * [Android] Upgrade to Capacitor v7
 
