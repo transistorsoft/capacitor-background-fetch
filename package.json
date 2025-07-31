@@ -1,6 +1,6 @@
 {
   "name": "@transistorsoft/capacitor-background-fetch",
-  "version": "7.0.1",
+  "version": "7.1.0",
   "description": "Periodic callbacks in the background for both IOS and Android",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -11,9 +11,9 @@
     "android/build.gradle",
     "android/libs/",
     "dist/",
-    "ios/Plugin/",
-    "ios/Resources/",
-    "ios/TSBackgroundFetch.xcframework/",
+    "ios/Sources",
+    "Package.swift",
+    "ios/Frameworks/TSBackgroundFetch.xcframework/",
     "TransistorsoftCapacitorBackgroundFetch.podspec"
   ],
   "author": "Transistor Software<chris@transistorsoft.com>",
@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
-    "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin && cd ..",
+    "verify:ios": "xcodebuild -scheme background-fetch -destination generic/platform=iOS",
     "verify:android": "cd android && ./gradlew clean build test && cd ..",
     "verify:web": "npm run build",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",

@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [7.1.0] &mdash; 2025-07-31
+* [iOS] Implement Swift Package Manager (SPM)
+
 ## [7.0.1] &mdash; 2024-02-05
 * Fix plugin buildscript.
 

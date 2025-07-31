@@ -1,6 +1,8 @@
 *.png
 *.log
+.github
 node_modules
+example
 docs
 help
 scripts
