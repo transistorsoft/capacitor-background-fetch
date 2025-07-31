@@ -8,6 +8,6 @@
 		"HapticsPlugin",
 		"KeyboardPlugin",
 		"PreferencesPlugin",
-		"BackgroundFetchModule"
+		"BackgroundFetchPlugin"
 	]
 }
