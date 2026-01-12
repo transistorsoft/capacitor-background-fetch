@@ -6,8 +6,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ionic-team/capacitor-swift-pm.git",
       "state" : {
-        "revision" : "3fdb4ac03e3c20e86dd9b6feb15d0b129a6ee987",
-        "version" : "7.4.2"
+        "revision" : "596259033e94829dffc552a40e7129262122995e",
+        "version" : "8.0.0"
+      }
+    },
+    {
+      "identity" : "transistor-background-fetch",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/transistorsoft/transistor-background-fetch.git",
+      "state" : {
+        "revision" : "185ebdd684eac1796829db8bd61168f650e04892",
+        "version" : "4.0.5"
       }
     }
   ],

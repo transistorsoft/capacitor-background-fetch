@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [8.0.0] &mdash; 2026-01-12
+* Update package dependencies for Capacitor 8.
+* Import `TSBackgroundFetch` from SPM / Cocoapods; `tslocationmanager` from mavencentral.
+
 ## [7.1.0] &mdash; 2025-07-31
 * [iOS] Implement Swift Package Manager (SPM)
 

@@ -1,6 +1,7 @@
 package com.transistorsoft.bgfetch.capacitor;
 
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.util.Log;
 
 import com.getcapacitor.JSObject;
@@ -24,6 +25,7 @@ public class BackgroundFetchPlugin extends Plugin {
     @Override
     public void load() {
         super.load();
+
         Log.d(TAG, "load");
         // Poke BackgroundFetch to come alive.
         BackgroundFetch.getInstance(getContext());
