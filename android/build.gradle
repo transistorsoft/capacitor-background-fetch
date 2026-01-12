@@ -17,17 +17,12 @@ buildscript {
 
 apply plugin: 'com.android.library'
 
-def DEFAULT_LIFE_CYCLE_RUNTIME_VERSION          = "2.7.0"
-def DEFAULT_LIFE_CYCLE_EXTENSIONS_VERSION       = "2.2.0"
-
 def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
 android {
-    if (project.android.hasProperty("namespace")) {
-        namespace("com.transistorsoft.bgfetch.capacitor")
-    }
+    namespace("com.transistorsoft.bgfetch.capacitor")
 
     compileSdk project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 35
     defaultConfig {
@@ -62,17 +57,12 @@ repositories {
 }
 
 dependencies {
-    def lifeCycleRuntimeVersion = safeExtGet('lifeCycleRuntimeVersion', DEFAULT_LIFE_CYCLE_RUNTIME_VERSION)
-    def lifeCycleExtensionsVersion = safeExtGet('lifeCycleExtensionsVersion', DEFAULT_LIFE_CYCLE_EXTENSIONS_VERSION)
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
-    // LifeCycleObserver
-    implementation "androidx.lifecycle:lifecycle-runtime:$lifeCycleRuntimeVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycleExtensionsVersion"
+    def backgroundFetchVersion = safeExtGet('backgroundFetchVersion', '4.0.+')
+    api "com.transistorsoft:tsbackgroundfetch:$backgroundFetchVersion"
 
-    api(group: 'com.transistorsoft', name:'tsbackgroundfetch', version: '+')
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+
 }

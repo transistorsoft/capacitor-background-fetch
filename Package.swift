@@ -6,7 +6,7 @@ import PackageDescription
 
 let package = Package(
     name: "TransistorsoftCapacitorBackgroundFetch",
-    platforms: [.iOS(.v14)],
+    platforms: [.iOS(.v15)],
     products: [
         .library(
             name: "TransistorsoftCapacitorBackgroundFetch",
@@ -14,7 +14,8 @@ let package = Package(
         )
     ],
     dependencies: [
-         .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", from: "7.0.0")
+         .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", from: "8.0.0"),
+         .package(url: "https://github.com/transistorsoft/transistor-background-fetch.git", from: "4.0.3")
     ],
     targets: [
         .target(
@@ -22,16 +23,9 @@ let package = Package(
             dependencies: [
                 .product(name: "Capacitor", package: "capacitor-swift-pm"),
                 .product(name: "Cordova", package: "capacitor-swift-pm"),
-                "TSBackgroundFetch"
+                .product(name: "TSBackgroundFetch", package: "transistor-background-fetch")
             ],
             path: "ios/Sources/BackgroundFetchPlugin",
-            resources: [
-                .process("PrivacyInfo.xcprivacy")
-            ]
-        ),
-        .binaryTarget(
-            name: "TSBackgroundFetch",
-            path: "ios/Frameworks/TSBackgroundFetch.xcframework"
         )
     ]
 )
