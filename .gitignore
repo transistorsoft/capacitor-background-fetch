@@ -2,6 +2,12 @@
 dist
 node_modules
 
+# Claude
+.claude
+
+# build
+.build
+
 # iOS files
 Pods
 Podfile.lock
