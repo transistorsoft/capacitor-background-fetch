@@ -29,6 +29,16 @@ There is **no way** to increase the rate which a fetch-event occurs and this plu
 
 -------------------------------------------------------------
 
+## Install
+
+After cloning, run the setup script to configure git hooks and local dev environment:
+
+```bash
+./scripts/setup.sh
+```
+
+-------------------------------------------------------------
+
 # Contents
 - ### :books: [API Documentation](https://transistorsoft.github.io/capacitor-background-fetch/)
 - ### [Installing the Plugin](#installing-the-plugin)

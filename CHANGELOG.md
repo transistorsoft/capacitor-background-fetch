@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Unreleased
+- Bump Capacitor deps to v8, add post-commit changelog hook and setup script
+
 ## [8.0.0] &mdash; 2026-01-12
 * Update package dependencies for Capacitor 8.
 * Import `TSBackgroundFetch` from SPM / Cocoapods; `tslocationmanager` from mavencentral.
