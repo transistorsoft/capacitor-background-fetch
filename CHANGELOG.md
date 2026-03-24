@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## Unreleased
+- Add Package.resolved to .gitignore
 - Bump Capacitor deps to v8, add post-commit changelog hook and setup script
 
 ## [8.0.0] &mdash; 2026-01-12
