@@ -1,6 +1,6 @@
 {
   "name": "@transistorsoft/capacitor-background-fetch",
-  "version": "8.0.1",
+  "version": "8.1.0",
   "description": "Periodic callbacks in the background for both IOS and Android",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -47,6 +47,9 @@
     "watch": "tsc --watch",
     "prepublishOnly": "npm run build"
   },
+  "dependencies": {
+    "@transistorsoft/background-fetch-types": "^1.0.0"
+  },
   "peerDependencies": {
     "@capacitor/core": ">=8.0.0"
   },
@@ -58,7 +61,6 @@
     "@ionic/eslint-config": "^0.4.0",
     "@ionic/prettier-config": "^4.0.0",
     "@ionic/swiftlint-config": "^2.0.0",
-    "@transistorsoft/typedoc-theme": "^2.0.7",
     "eslint": "^8.57.0",
     "prettier": "^3.4.2",
     "prettier-plugin-java": "^2.6.6",
