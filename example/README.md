@@ -29,8 +29,8 @@ npx cap sync
 - Now run it:
 
 ```console
-ionic capacitor run android
-ionic capacitor run ios
+npx cap run android
+npx cap run ios
 ```
 
 ## Simulating events.
@@ -49,7 +49,7 @@ The `/example` folder has a script that can run the command above:
 
 ### iOS
 
-See the plugin [README](../README.md#ios-simulated-events) to learn how to simulate iOS fetch events.
+See the [Debugging Guide](https://fetch.transistorsoft.com/capacitor/debugging) to learn how to simulate iOS fetch events.
 
 ```console
  e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.transistorsoft.fetch"]
