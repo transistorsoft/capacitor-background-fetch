@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [8.1.0] &mdash; 2026-04-14
+* [Changed] TypeScript type definitions now provided by shared [`@transistorsoft/background-fetch-types`](https://www.npmjs.com/package/@transistorsoft/background-fetch-types) package.
+* [Changed] Simplified README with links to new [Documentation Site](https://fetch.transistorsoft.com/capacitor).
+
 ## [8.0.1] &mdash; 2026-03-23
 - Bump Capacitor deps to v8
 
