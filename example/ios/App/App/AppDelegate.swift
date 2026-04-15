@@ -8,12 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        // [capacitor-background-fetch]
-        let fetchManager = TSBackgroundFetch.sharedInstance();
-        fetchManager?.didFinishLaunching();
-      
+        // Override point for customization after application launch.                      
         return true
     }
 
@@ -56,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("BackgroundFetchPlugin AppDelegate received fetch event");
         let fetchManager = TSBackgroundFetch.sharedInstance();
-        fetchManager?.perform(completionHandler: completionHandler, applicationState: application.applicationState);
+        fetchManager.perform(completionHandler: completionHandler, applicationState: application.applicationState);
     }
   
 }

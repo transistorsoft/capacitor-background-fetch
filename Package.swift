@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
          .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", from: "8.0.0"),
-         .package(url: "https://github.com/transistorsoft/transistor-background-fetch.git", from: "4.0.3")
+         .package(url: "https://github.com/transistorsoft/transistor-background-fetch.git", from: "4.1.0")
     ],
     targets: [
         .target(
