@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [8.1.1] &mdash; 2026-04-15
+* Update native ios/android libs to latest 4.1.0
+
 ## [8.1.0] &mdash; 2026-04-14
 * [Changed] TypeScript type definitions now provided by shared [`@transistorsoft/background-fetch-types`](https://www.npmjs.com/package/@transistorsoft/background-fetch-types) package.
 * [Changed] Simplified README with links to new [Documentation Site](https://fetch.transistorsoft.com/capacitor).
