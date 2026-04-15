@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [8.1.2] &mdash; 2026-04-15
+* Remove obsolete local tsbackgroundfetch.aar / TSBackgroundFetch.xcframework
+
 ## [8.1.1] &mdash; 2026-04-15
 * Update native ios/android libs to latest 4.1.0
 

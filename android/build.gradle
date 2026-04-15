@@ -51,9 +51,6 @@ android {
 repositories {
     google()
     mavenCentral()
-    maven {
-        url './libs'
-    }
 }
 
 dependencies {
