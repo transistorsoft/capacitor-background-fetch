@@ -58,7 +58,7 @@ repositories {
 
 dependencies {
     implementation project(':capacitor-android')
-    def backgroundFetchVersion = safeExtGet('backgroundFetchVersion', '4.0.+')
+    def backgroundFetchVersion = safeExtGet('backgroundFetchVersion', '4.1.+')
     api "com.transistorsoft:tsbackgroundfetch:$backgroundFetchVersion"
 
     testImplementation "junit:junit:$junitVersion"

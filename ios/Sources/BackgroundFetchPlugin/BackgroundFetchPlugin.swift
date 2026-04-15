@@ -27,7 +27,15 @@ public class BackgroundFetchPlugin: CAPPlugin, CAPBridgedPlugin {
     // MARK: - Lifecycle
 
     @objc public override func load() {
+        // didFinishLaunching is handled automatically by TSBackgroundFetch +load
+        // (v4.1+). Keep this call for backward compatibility with older native
+        // versions where consumers must register BGTask handlers explicitly.
+        TSBackgroundFetch.sharedInstance().didFinishLaunching()
         configured = false
+    }
+
+    deinit {
+        TSBackgroundFetch.sharedInstance().removeListener(PLUGIN_ID)
     }
 
     // MARK: - Plugin Methods
@@ -36,7 +44,7 @@ public class BackgroundFetchPlugin: CAPPlugin, CAPBridgedPlugin {
         let config = call.getObject("options") ?? [:]
         let fetchManager = TSBackgroundFetch.sharedInstance()
 
-        fetchManager?.addListener(
+        fetchManager.addListener(
             PLUGIN_ID,
             callback: createFetchCallback(),
             timeout: createFetchTimeoutCallback()
@@ -44,7 +52,7 @@ public class BackgroundFetchPlugin: CAPPlugin, CAPBridgedPlugin {
 
         let delay = (config["minimumFetchInterval"] as? Double ?? 15) * 60
 
-        fetchManager?.configure(delay) { [weak self] status in
+        fetchManager.configure(delay) { [weak self] status in
             guard let self = self else { return }
             self.configured = true
             if status != .available {
@@ -58,11 +66,11 @@ public class BackgroundFetchPlugin: CAPPlugin, CAPBridgedPlugin {
 
     @objc func start(_ call: CAPPluginCall) {
         let fetchManager = TSBackgroundFetch.sharedInstance()
-        fetchManager?.status { [weak self] status in
+        fetchManager.status { [weak self] status in
             guard let self = self else { return }
             if status == .available {
-                fetchManager?.addListener(self.PLUGIN_ID, callback: self.createFetchCallback(), timeout: self.createFetchTimeoutCallback())
-                if let error = fetchManager?.start(nil) {
+                fetchManager.addListener(self.PLUGIN_ID, callback: self.createFetchCallback(), timeout: self.createFetchTimeoutCallback())
+                if let error = fetchManager.start(nil) {
                     let nsError = error as NSError
                     call.reject(error.localizedDescription, nil, nil, nsError.userInfo)
                 } else {
@@ -79,9 +87,9 @@ public class BackgroundFetchPlugin: CAPPlugin, CAPBridgedPlugin {
         let taskId = call.getString("taskId")
         let fetchManager = TSBackgroundFetch.sharedInstance()
         if taskId == nil {
-            fetchManager?.removeListener(PLUGIN_ID)
+            fetchManager.removeListener(PLUGIN_ID)
         }
-        fetchManager?.stop(taskId)
+        fetchManager.stop(taskId)
         call.resolve()
     }
 
@@ -94,7 +102,7 @@ public class BackgroundFetchPlugin: CAPPlugin, CAPBridgedPlugin {
         let requiresCharging = config["requiresCharging"] as? Bool ?? false
         let requiresNetwork = config["requiresNetworkConnectivity"] as? Bool ?? false
 
-        let error = TSBackgroundFetch.sharedInstance()?.scheduleProcessingTask(
+        let error = TSBackgroundFetch.sharedInstance().scheduleProcessingTask(
             withIdentifier: taskId,
             type: 0,
             delay: delay,
@@ -114,12 +122,12 @@ public class BackgroundFetchPlugin: CAPPlugin, CAPBridgedPlugin {
 
     @objc func finish(_ call: CAPPluginCall) {
         let taskId = call.getString("taskId")
-        TSBackgroundFetch.sharedInstance()?.finish(taskId)
+        TSBackgroundFetch.sharedInstance().finish(taskId)
         call.resolve()
     }
 
     @objc func status(_ call: CAPPluginCall) {
-        TSBackgroundFetch.sharedInstance()?.status { status in
+        TSBackgroundFetch.sharedInstance().status { status in
             call.resolve(["status": status.rawValue])
         }
     }
