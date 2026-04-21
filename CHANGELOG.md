@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [8.1.3] &mdash; 2026-04-21
+* Remove proguard-android.txt
+
 ## [8.1.2] &mdash; 2026-04-15
 * Remove obsolete local tsbackgroundfetch.aar / TSBackgroundFetch.xcframework
 
