@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [8.1.4] &mdash; 2026-10-29
+* Fix missing proguard-rules.pro in files manifest of package.json
+
 ## [8.1.3] &mdash; 2026-04-21
 * Remove proguard-android.txt
 
