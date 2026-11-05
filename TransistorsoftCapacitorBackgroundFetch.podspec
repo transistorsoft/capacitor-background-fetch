@@ -13,7 +13,8 @@ Pod::Spec.new do |s|
   s.source_files = 'ios/Sources/BackgroundFetchPlugin/**/*.{swift,h,m,c,cc,mm,cpp}'
   s.ios.deployment_target = '15.0'
   s.dependency 'Capacitor'
-  s.dependency 'TSBackgroundFetch', '~> 4.1.0'
+  # 4.2 is the first iOS 15 build; 4.1.x declares iOS 12, which Xcode 27 rejects (WO-001)
+  s.dependency 'TSBackgroundFetch', '~> 4.2'
   s.static_framework = true
   s.swift_version = '5.1'
 end

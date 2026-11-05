@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+* [iOS] CocoaPods apps now require TSBackgroundFetch 4.2 (`~> 4.2`, iOS 15). Existing CocoaPods apps locked to TSBackgroundFetch 4.1.1 must run `pod update TSBackgroundFetch`. Swift Package Manager apps (the Capacitor 8 default) are unchanged. (WO-001)
+* [iOS] Get TSBackgroundFetch from one package manager only. Swift Package Manager and CocoaPods must not both provide it in the same app.
+  - CocoaPods Trunk becomes read-only on 2026-12-02, so CocoaPods apps stay on TSBackgroundFetch 4.2.x after that date.
+  - Swift Package Manager apps keep getting new versions. (WO-001)
+
 ## [8.1.4] &mdash; 2026-10-29
 * Fix missing proguard-rules.pro in files manifest of package.json
 
