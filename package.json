@@ -44,7 +44,9 @@
     "build": "npm run clean && tsc && rollup -c rollup.config.mjs",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "preflight": "scripts/preflight.sh",
+    "release": "scripts/release.sh"
   },
   "dependencies": {
     "@transistorsoft/background-fetch-types": "^1.0.0"
