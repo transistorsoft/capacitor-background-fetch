@@ -7,6 +7,7 @@
   - Swift Package Manager apps keep getting new versions. (WO-001)
 * [Android] A fetch that arrives after the app's Activity is destroyed while its process lives (for example after the app calls `finish()`) is now handled as headless. With `stopOnTerminate: true` it stops the task; with `stopOnTerminate: false` and `enableHeadless: true` it runs your `BackgroundFetchHeadlessTask`. Before, it was sent to the destroyed WebView, where it was lost, and its job was never finished. (WO-007)
 * [Changed] `scheduleTask()` and `stop()` resolve `true`, as `@transistorsoft/background-fetch-types` declares; their return type is now `Promise<boolean>` (was `Promise<void>`). TypeScript code that types either method or its result as `Promise<void>` no longer compiles, nor does a test double for either that resolves with no value (for example `Promise.resolve()`). A plain `await` is unaffected. (WO-006)
+* [iOS] `start()` resolves the `BackgroundFetchStatus` again, and rejects when background fetch is unavailable (Background App Refresh off), as it did before 7.1.0. Since 7.1.0 it resolved `undefined`, at once, and could not reject: on iOS, an `await BackgroundFetch.start()` without a `try` now throws when background fetch is unavailable. (WO-008)
 
 ## [8.1.4] &mdash; 2026-10-29
 * Fix missing proguard-rules.pro in files manifest of package.json
