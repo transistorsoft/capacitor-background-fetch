@@ -10,7 +10,9 @@ public class BackgroundFetchPlugin: CAPPlugin, CAPBridgedPlugin {
     public let jsName = "BackgroundFetch"
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "configure", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "start", returnType: CAPPluginReturnCallback),
+        // (WO-008) A promise, as every method here and Android's: a callback-type method resolves the JS promise with
+        // the bridge's callbackId at once, so start() read undefined and its reject never reached JS (7.1.0 to 8.1.4).
+        CAPPluginMethod(name: "start", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "stop", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "scheduleTask", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "finish", returnType: CAPPluginReturnPromise),
