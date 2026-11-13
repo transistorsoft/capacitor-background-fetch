@@ -5,6 +5,7 @@
 * [iOS] Get TSBackgroundFetch from one package manager only. Swift Package Manager and CocoaPods must not both provide it in the same app.
   - CocoaPods Trunk becomes read-only on 2026-12-02, so CocoaPods apps stay on TSBackgroundFetch 4.2.x after that date.
   - Swift Package Manager apps keep getting new versions. (WO-001)
+* [Changed] `scheduleTask()` and `stop()` resolve `true`, as `@transistorsoft/background-fetch-types` declares; their return type is now `Promise<boolean>` (was `Promise<void>`). TypeScript code that types either method or its result as `Promise<void>` no longer compiles, nor does a test double for either that resolves with no value (for example `Promise.resolve()`). A plain `await` is unaffected. (WO-006)
 
 ## [8.1.4] &mdash; 2026-10-29
 * Fix missing proguard-rules.pro in files manifest of package.json
