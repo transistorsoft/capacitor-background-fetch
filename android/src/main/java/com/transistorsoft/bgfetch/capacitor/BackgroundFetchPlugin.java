@@ -1,5 +1,6 @@
 package com.transistorsoft.bgfetch.capacitor;
 
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
@@ -11,8 +12,11 @@ import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.transistorsoft.tsbackgroundfetch.BackgroundFetch;
 import com.transistorsoft.tsbackgroundfetch.BackgroundFetchConfig;
+import com.transistorsoft.tsbackgroundfetch.LifecycleManager;
 
 import org.json.JSONException;
+
+import java.lang.ref.WeakReference;
 
 @CapacitorPlugin(name = "BackgroundFetch")
 public class BackgroundFetchPlugin extends Plugin {
@@ -29,6 +33,36 @@ public class BackgroundFetchPlugin extends Plugin {
         Log.d(TAG, "load");
         // Poke BackgroundFetch to come alive.
         BackgroundFetch.getInstance(getContext());
+    }
+
+    // (WO-007) The BridgeActivity resumed most recently.  Static because each BridgeActivity has its own Bridge and its own
+    // instance of this plugin; weak so that it never keeps a destroyed Activity alive.
+    private static WeakReference<Activity> sResumedActivity = new WeakReference<>(null);
+
+    @Override
+    protected void handleOnResume() {
+        super.handleOnResume();
+        sResumedActivity = new WeakReference<>(getActivity());
+        // (WO-007) A BridgeActivity is on screen, so the app is not headless.  ProcessLifecycleOwner sends no ON_START
+        // when the new Activity resumes within 700 ms of the old one's pause, so nothing else clears the flag then.
+        LifecycleManager.getInstance().setHeadless(false);
+    }
+
+    @Override
+    protected void handleOnDestroy() {
+        // (WO-007) Only the bridge sees its Activity destroyed in a live process: ProcessLifecycleOwner never sends
+        // ON_DESTROY.  Unless the SDK goes headless here, the next fetch goes to this destroyed Bridge's listeners,
+        // and nothing finishes it.  getActivity() is this Bridge's own Activity, the one being destroyed.  Two destroys
+        // are not a termination:
+        // - a configuration-change recreation (WO-003): a new Bridge follows at once;
+        // - the destroy of an Activity that is no longer the one resumed last: when an app restarts itself, the new
+        //   Activity resumes before the old one is destroyed, and its page is on screen.  React Native ignores that
+        //   destroy too: it acts only on its current Activity.
+        Activity activity = getActivity();
+        if (activity != null && activity == sResumedActivity.get() && !activity.isChangingConfigurations()) {
+            LifecycleManager.getInstance().setHeadless(true);
+        }
+        super.handleOnDestroy();
     }
 
     @PluginMethod

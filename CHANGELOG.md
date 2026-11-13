@@ -5,6 +5,7 @@
 * [iOS] Get TSBackgroundFetch from one package manager only. Swift Package Manager and CocoaPods must not both provide it in the same app.
   - CocoaPods Trunk becomes read-only on 2026-12-02, so CocoaPods apps stay on TSBackgroundFetch 4.2.x after that date.
   - Swift Package Manager apps keep getting new versions. (WO-001)
+* [Android] A fetch that arrives after the app's Activity is destroyed while its process lives (for example after the app calls `finish()`) is now handled as headless. With `stopOnTerminate: true` it stops the task; with `stopOnTerminate: false` and `enableHeadless: true` it runs your `BackgroundFetchHeadlessTask`. Before, it was sent to the destroyed WebView, where it was lost, and its job was never finished. (WO-007)
 
 ## [8.1.4] &mdash; 2026-10-29
 * Fix missing proguard-rules.pro in files manifest of package.json
