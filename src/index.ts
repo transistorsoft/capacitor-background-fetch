@@ -241,8 +241,10 @@ export class BackgroundFetch {
   *   periodic: false            // <-- ONE-SHOT (default)
   * })
   * ```
+  *
+  * @returns A `Promise` resolving to `true` if the task was successfully scheduled.
   */
-  static scheduleTask(config:TaskConfig):Promise<void> {
+  static scheduleTask(config:TaskConfig):Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (typeof(config.delay) !== 'number') {
         const delay = parseInt(config.delay, 10);
@@ -253,7 +255,9 @@ export class BackgroundFetch {
         config.delay = delay;
       }
       return NativeModule.scheduleTask({options:config}).then(() => {
-        resolve();
+        // (WO-006) The shared types promise true.  A Capacitor plugin cannot resolve a bare boolean, and native has
+        // nothing to report beyond success or a rejection.
+        resolve(true);
       }).catch((error:PluginResultError) => {
         reject(error.message);
       });
@@ -324,11 +328,15 @@ export class BackgroundFetch {
   * .
   * BackgroundFetch.stop('my-custom-task');
   * ```
+  *
+  * @returns A `Promise` resolving to `true` on success.
   */
-  static stop(taskId?:string):Promise<void> {
-    return new Promise((resolve:Function, reject:Function) => {
+  static stop(taskId?:string):Promise<boolean> {
+    return new Promise((resolve, reject) => {
       NativeModule.stop({taskId:taskId}).then(() => {
-        resolve();
+        // (WO-006) true whenever the call returns, as React Native resolves: the SDK does not report whether a task
+        // was stopped.
+        resolve(true);
       }).catch((error:PluginResultError) => {
         reject(error.message);
       })

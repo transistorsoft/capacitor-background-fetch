@@ -92,6 +92,16 @@ npm install --silent --no-audit --no-fund "$TARBALL" "@capacitor/core@$CORE" "ty
 cat > index.ts <<'TS'
 import { BackgroundFetch } from "@transistorsoft/capacitor-background-fetch";
 import type { BackgroundFetchConfig, BackgroundFetchStatus, TaskConfig } from "@transistorsoft/capacitor-background-fetch";
+import type TypesBackgroundFetch from "@transistorsoft/background-fetch-types";
+
+// (WO-006) Capacitor's BackgroundFetch is its own class, compiled from src/index.ts, so nothing else holds it to the
+// shared types' class.  This holds every member Capacitor has to the types' declaration of it; registerHeadlessTask
+// is absent by design (Capacitor's headless task is Java-only).  Parameter lists are checked only loosely by an
+// assignment: the calls below cover configure, scheduleTask and stop.
+export const conforms: Pick<typeof TypesBackgroundFetch,
+  | "STATUS_RESTRICTED" | "STATUS_DENIED" | "STATUS_AVAILABLE"
+  | "NETWORK_TYPE_NONE" | "NETWORK_TYPE_ANY" | "NETWORK_TYPE_UNMETERED" | "NETWORK_TYPE_NOT_ROAMING" | "NETWORK_TYPE_CELLULAR"
+  | "configure" | "scheduleTask" | "start" | "stop" | "finish" | "status"> = BackgroundFetch;
 
 const config: BackgroundFetchConfig = {
   minimumFetchInterval: 15,
@@ -105,8 +115,11 @@ export async function start(): Promise<boolean> {
     async (taskId: string) => BackgroundFetch.finish(taskId),
   );
   const task: TaskConfig = { taskId: "com.transistorsoft.task", delay: 5000, periodic: false };
-  await BackgroundFetch.scheduleTask(task);
-  return status === BackgroundFetch.STATUS_AVAILABLE;
+  // (WO-006) The types declare both Promise<boolean>.
+  const scheduled: boolean = await BackgroundFetch.scheduleTask(task);
+  const stoppedTask: boolean = await BackgroundFetch.stop(task.taskId);
+  const stoppedAll: boolean = await BackgroundFetch.stop();
+  return status === BackgroundFetch.STATUS_AVAILABLE && scheduled && stoppedTask && stoppedAll;
 }
 TS
 for mode in "node16 node16" "esnext bundler"; do
