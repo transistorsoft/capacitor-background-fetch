@@ -57,6 +57,11 @@ dependencies {
     implementation project(':capacitor-android')
     def backgroundFetchVersion = safeExtGet('backgroundFetchVersion', '4.1.+')
     api "com.transistorsoft:tsbackgroundfetch:$backgroundFetchVersion"
+    // (WO-007) Compile-time only: BackgroundFetchPlugin names LifecycleManager (a DefaultLifecycleObserver) and
+    // getActivity()'s AppCompatActivity, which tsbackgroundfetch and capacitor-android declare `implementation`.
+    // At runtime both come from those libraries, so the app's dependency graph is unchanged.
+    compileOnly "androidx.appcompat:appcompat:${safeExtGet('androidxAppCompatVersion', '1.7.1')}"
+    compileOnly "androidx.lifecycle:lifecycle-common:2.8.5"
 
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
