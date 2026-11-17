@@ -1,14 +1,16 @@
 # CHANGELOG
 
-## Unreleased
+## [8.2.0] &mdash; 2026-11-17
 * [Changed] [Android] `stop()` with no argument now cancels every task the SDK holds in the app's running process, as documented: the fetch task and the tasks scheduled with `scheduleTask()`. Until now it stopped only the fetch task on Android, and scheduled tasks kept running. To stop one task, pass its `taskId`. After `stop()`, a task you schedule reaches no `configure()` callback if it fires before you call `configure()` again: that fire is lost, not deferred. (WO-013)
 * [iOS] Require TSBackgroundFetch 4.2 (iOS 15) or any later 4.x: `from: "4.2.0"` with Swift Package Manager (the Capacitor 8 default), `~> 4.2` with CocoaPods. Existing CocoaPods apps locked to TSBackgroundFetch 4.1.1 must run `pod update TSBackgroundFetch`. (WO-001)
 * [iOS] Get TSBackgroundFetch from one package manager only. Swift Package Manager and CocoaPods must not both provide it in the same app.
   - CocoaPods Trunk becomes read-only on 2026-12-02, so CocoaPods apps stay on TSBackgroundFetch 4.2.x after that date.
   - Swift Package Manager apps keep getting new versions. (WO-001)
+* [iOS] If your app also uses `@transistorsoft/capacitor-background-geolocation`, stay on 8.1.4, pinned exactly (`"@transistorsoft/capacitor-background-fetch": "8.1.4"`): a `^8.1.4` range installs 8.2.0 on your next `npm update` or fresh install. TSLocationManager 4.8.3, the latest, requires TSBackgroundFetch 4.1.x, so neither Swift Package Manager nor CocoaPods can resolve both. Upgrade once a TSLocationManager that accepts TSBackgroundFetch 4.2 is out and your `@transistorsoft/capacitor-background-geolocation` accepts it (9.7.2 takes TSLocationManager 4.8.x only). With CocoaPods, then run `pod update TSLocationManager TSBackgroundFetch`. (WO-001)
 * [Android] A fetch that arrives after the app's Activity is destroyed while its process lives (for example after the app calls `finish()`) is now handled as headless. With `stopOnTerminate: true` it stops the task; with `stopOnTerminate: false` and `enableHeadless: true` it runs your `BackgroundFetchHeadlessTask`. Before, it was sent to the destroyed WebView, where it was lost, and its job was never finished. (WO-007)
 * [Changed] `scheduleTask()` and `stop()` resolve `true`, as `@transistorsoft/background-fetch-types` declares; their return type is now `Promise<boolean>` (was `Promise<void>`). TypeScript code that types either method or its result as `Promise<void>` no longer compiles, nor does a test double for either that resolves with no value (for example `Promise.resolve()`). A plain `await` is unaffected. (WO-006)
 * [iOS] `start()` resolves the `BackgroundFetchStatus` again, and rejects when background fetch is unavailable (Background App Refresh off), as it did before 7.1.0. Since 7.1.0 it resolved `undefined`, at once, and could not reject: on iOS, an `await BackgroundFetch.start()` without a `try` now throws when background fetch is unavailable. (WO-008)
+* Require `@transistorsoft/background-fetch-types` 1.0.1 or later. Its 1.0.0 throws `ReferenceError: BackgroundFetch is not defined` when a build loads the package at run time (esbuild, Vite, or Babel or SWC compiling TypeScript one file at a time).
 
 ## [8.1.4] &mdash; 2026-10-29
 * Fix missing proguard-rules.pro in files manifest of package.json
