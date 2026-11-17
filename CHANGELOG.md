@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## [8.2.0] &mdash; 2026-11-17
 * [Changed] [Android] `stop()` with no argument now cancels every task the SDK holds in the app's running process, as documented: the fetch task and the tasks scheduled with `scheduleTask()`. Until now it stopped only the fetch task on Android, and scheduled tasks kept running. To stop one task, pass its `taskId`. After `stop()`, a task you schedule reaches no `configure()` callback if it fires before you call `configure()` again: that fire is lost, not deferred. (WO-013)
 * [iOS] Require TSBackgroundFetch 4.2 (iOS 15) or any later 4.x: `from: "4.2.0"` with Swift Package Manager (the Capacitor 8 default), `~> 4.2` with CocoaPods. Existing CocoaPods apps locked to TSBackgroundFetch 4.1.1 must run `pod update TSBackgroundFetch`. (WO-001)
 * [iOS] Get TSBackgroundFetch from one package manager only. Swift Package Manager and CocoaPods must not both provide it in the same app.
