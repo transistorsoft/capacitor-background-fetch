@@ -49,7 +49,7 @@
     "release": "scripts/release.sh"
   },
   "dependencies": {
-    "@transistorsoft/background-fetch-types": "^1.0.0"
+    "@transistorsoft/background-fetch-types": "^1.0.1"
   },
   "peerDependencies": {
     "@capacitor/core": ">=8.0.0"
